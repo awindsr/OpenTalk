@@ -12,6 +12,7 @@ body{
     background-color: black;
 }
 .risediv{
+    z-index: 99;
     height:100vh;
     width:100%;
     background-color: black;
@@ -39,10 +40,88 @@ body{
 }
 
 
-.register{
+.registerpage{
+    z-index: -1;
     height:100vh;
     width:100%;
-    background-color: aquamarine;
+    background: url(../images/bgimg.jpg);
+    background-position: center;
+    background-size: cover;
 }
+.register{
+    
+    display: flex;
+    gap:10px;
+    flex-direction: column;
+    border-radius: 10px;
+    height: 650px;
+    min-width:50vw;
+    background-color: rgba(245, 118, 118, 0);
+    position: absolute;
+    top:50%;
+    left:50%;
+    overflow: hidden;
+    transform: translate(-50%,-50%);
+}
+.logodiv{
+    padding:20px 20px;
+    width:100%;
+    background-color: black;
+    border:1px solid white;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content:flex-start;
+    align-items:center;
+    font-family: "Mona Sans SemiBold";
+    font-size:1.3cm;
+}
+.seemore{
+    color:white;
+    font-family: "Mona Sans SemiBold";
+    font-size:35px;
+}
+.logodiv>img{
+    height:1.5cm;
+    width: 1.5cm;
+}
+.registerform{
+    
+    display: flex;
+    flex-direction: column;
+    border:1px solid white;
+    gap:15px;
+    padding: 20px 20px;
+    background-color: #000000;
+    border-radius: 10px;
+    height:100%;
+    
+    
+}
+.registerform>input{
+    height:1.3cm;
+    width:100%;
+    border: 1px solid white;
+    background-color: black;
+    padding-left: 10px;
+    border-radius: 5px;
+    font-size: large;
+    color:white;
+}
+
+button{
+   
+    padding:15px 25px;
+    background-color: rgb(255, 102, 6);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    font-size: larger;
+    margin-top: 30px;
+    font-family: "Mona Sans SemiBold";
+    
+    
+}
+
+
 
 
