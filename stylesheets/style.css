@@ -41,22 +41,23 @@ body{
 
 
 .registerpage{
-    z-index: -1;
+    
     height:100vh;
     width:100%;
-    background: url(../images/bgimg.jpg);
-    background-position: center;
-    background-size: cover;
+    background-color: rgb(0, 0, 0);
+    position: relative;
+    
 }
 .register{
     
     display: flex;
     gap:10px;
+    box-shadow: rgba(255, 255, 255, 0.19) 1px 1px 20px 10px, rgba(255, 255, 255, 0.23) 0px 6px 6px;
     flex-direction: column;
     border-radius: 10px;
     height: 650px;
     min-width:50vw;
-    background-color: rgba(245, 118, 118, 0);
+    background-color: rgba(0, 0, 0, 0.016);
     position: absolute;
     top:50%;
     left:50%;
@@ -65,13 +66,15 @@ body{
 }
 .logodiv{
     padding:20px 20px;
-    width:100%;
-    background-color: black;
-    border:1px solid white;
+    height:100%;
+   
+    background-color: rgb(0, 0, 0);
+    
     border-radius: 10px;
     color: white;
+
     display: flex;
-    justify-content:flex-start;
+    justify-content:center;
     align-items:center;
     font-family: "Mona Sans SemiBold";
     font-size:1.3cm;
@@ -89,7 +92,7 @@ body{
     
     display: flex;
     flex-direction: column;
-    border:1px solid white;
+    
     gap:15px;
     padding: 20px 20px;
     background-color: #000000;
