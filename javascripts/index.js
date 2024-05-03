@@ -32,11 +32,13 @@ sequence.from(".mainlogodiv img",{
     
  },"same") 
 
-//  sequence.from(".logodiv,.registerform",{
-//    opacity:0,
-//    stagger:0.1
+ sequence.from(".logodiv,.registerform",{
+   scale:0.5,
+   opacity:0.2,
+   delay:0.7
+   
 
-// })
+},"same")
 
 
 }
