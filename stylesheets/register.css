@@ -1,8 +1,11 @@
+<<<<<<< HEAD:stylesheets/style.css
 @font-face {
     font-family: 'Mona Sans';
     src:url(../font/Mona-Sans.ttf) format('woff2');;
   }
 
+=======
+>>>>>>> 75b78622551ef64ab17428d0ec3d0b220bcca0cd:stylesheets/register.css
 *{
     margin:0px;
     padding:0px;
@@ -20,8 +23,8 @@ body{
 }
 .mainlogodiv{
     background: #000000;
-    font-family: "Mona Sans SemiBold";
-    font-weight: 700;
+    font-family: "Noto Sans";
+    font-weight: 600;
     font-size: 7vw;
     display: flex;
     justify-content: center;
@@ -77,12 +80,12 @@ body{
     display: flex;
     justify-content:center;
     align-items:center;
-    font-family: "Mona Sans SemiBold";
+    font-family: "Noto Sans";
     font-size:1.3cm;
 }
 .seemore{
     color:white;
-    font-family: "Mona Sans SemiBold";
+    font-family: "Noto Sans";
     font-size:35px;
 }
 .logodiv>img{
@@ -131,7 +134,7 @@ button{
     border-radius: 10px;
     font-size: larger;
     margin-top: 30px;
-    font-family: "Mona Sans SemiBold";
+    font-family: "Noto Sans";
     
     
 }
