@@ -8,6 +8,7 @@ import expressSession from "express-session";
 
 router.use(express.urlencoded({ extended: true }));
 //Session Middleware
+
 passport.use(new localStrategy(user.authenticate()));
 router.use(expressSession({
     resave:false,

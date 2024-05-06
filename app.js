@@ -10,6 +10,7 @@ const PORT=3000;
 app.set("view engine", "ejs");
 ////////////////////////////////////////////////////////////
 
+//Passport initialization middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
