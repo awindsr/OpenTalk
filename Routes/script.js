@@ -7,8 +7,7 @@ import expressSession from "express-session";
 
 
 router.use(express.urlencoded({ extended: true }));
-
-
+//Session Middleware
 passport.use(new localStrategy(user.authenticate()));
 router.use(expressSession({
     resave:false,
@@ -16,15 +15,16 @@ router.use(expressSession({
     secret :"hey"
   }))
 
+
 router.get("/", ( req, res)=>{
     res.render("start.ejs");
 });
 
-router.get("/registerPage", (req,res)=>{
+router.get("/register", (req,res)=>{
     res.render("register.ejs");
 });
 
-router.post("/registerPage",(req,res,next)=>{
+router.post("/register",(req,res)=>{
     const userData = new user({
         username: req.body.username,
         password:req.body.password,
@@ -39,8 +39,7 @@ router.post("/registerPage",(req,res,next)=>{
    })
 })
 
-
-router.get("/loginPage",(req,res)=>{
+router.get("/login",(req,res)=>{
     res.render("login.ejs");
 });
 
@@ -50,6 +49,7 @@ router.post("/loginPage",passport.authenticate("local",{
     // failureFlash: true
   }),function(req,res){
   })
+
 // function isLoggedIn(req,res,next){
 //     if(req.isAuthenticated()) return next();
 //     res.redirect("/");
