@@ -6,16 +6,15 @@ import passport from "passport";
 
 router.use(express.urlencoded({ extended: true }));
 
-
 router.get("/", ( req, res)=>{
     res.render("start.ejs");
 });
 
-router.get("/registerPage", (req,res)=>{
+router.get("/register", (req,res)=>{
     res.render("register.ejs");
 });
 
-router.post("/registerPage",(req,res,next)=>{
+router.post("/register",(req,res)=>{
     const userData = new user({
         username: req.body.username,
         password: req.body.password,
@@ -30,10 +29,16 @@ router.post("/registerPage",(req,res,next)=>{
    })
 })
 
-
-router.get("/loginPage",(req,res)=>{
+router.get("/login",(req,res)=>{
     res.render("login.ejs");
 });
+
+router.post("/login",passport.authenticate("local",{
+    successRedirect :"/home",
+    failureRedirect : "/sedd",
+    // failureFlash: true
+  }),function(req,res){
+  });
 
 // function isLoggedIn(req,res,next){
 //     if(req.isAuthenticated()) return next();
