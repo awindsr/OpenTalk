@@ -4,10 +4,11 @@ import user from "../models/user.js";
 import passport from "passport";
 import localStrategy from "passport-local";
 import expressSession from "express-session";
+import flash from "connect-flash";
 
 
 router.use(express.urlencoded({ extended: true }));
-
+router.use(flash());
 
 passport.use(new localStrategy(user.authenticate()));
 router.use(expressSession({
@@ -41,13 +42,13 @@ router.post("/register",(req,res,next)=>{
 
 
 router.get("/login",(req,res)=>{
-    res.render("login.ejs");
+    res.render("login.ejs",{error :req.flash("error")});
 });
 
 router.post("/login",passport.authenticate("local",{
     successRedirect :"/home",
     failureRedirect : "/login",
-    // failureFlash: true
+    failureFlash: true
   }),function(req,res){
   })
 
