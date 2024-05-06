@@ -1,14 +1,12 @@
 import express from "express";
-const router = express.Router();
 import user from "../models/user.js";
 import passport from "passport";
 import localStrategy from "passport-local";
 import expressSession from "express-session";
 
+const router = express.Router();
 
 router.use(express.urlencoded({ extended: true }));
-
-
 passport.use(new localStrategy(user.authenticate()));
 router.use(expressSession({
     resave:false,
@@ -51,8 +49,8 @@ router.post("/login",passport.authenticate("local",{
   }),function(req,res){
   })
 
-router.get("/logout",function(req,res,next){
-    req.logout(function(err) {
+router.get("/logout",(req,res,next)=>{
+    req.logout((err)=> {
       if (err) { return next(err); }
       res.redirect('/login');
     });
