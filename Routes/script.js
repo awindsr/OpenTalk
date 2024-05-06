@@ -29,13 +29,13 @@ router.get("/register", (req,res)=>{
 router.post("/register",(req,res,next)=>{
     const userData = new user({
         username: req.body.username,
-        password:req.body.password,
+        password: req.body.password,
         fullname: req.body.fullname
     });
     console.log(req.body);
     user.register(userData,req.body.password)
-    .then(function(){
-    passport.authenticate("local")(req,res,function(){
+    .then(()=>{
+    passport.authenticate("local")(req,res,()=>{
       res.redirect("/home");
     })
    })
@@ -43,7 +43,6 @@ router.post("/register",(req,res,next)=>{
 
 
 router.get("/login",(req,res)=>{
-    
     res.render("login.ejs",{ error:req.flash("error")});
 });
 
@@ -59,10 +58,15 @@ router.get("/logout",(req,res,next)=>{
       if (err) { return next(err); }
       res.redirect('/login');
     });
-})
-// function isLoggedIn(req,res,next){
-//     if(req.isAuthenticated()) return next();
-//     res.redirect("/");
-//   }
+});
+
+router.get("/home",isLoggedIn,(req,res)=>{
+    res.send("<h1>WELCOME</h1>");
+});
+
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated()) return next();
+    res.redirect("/");
+  }
 
 export default router;
