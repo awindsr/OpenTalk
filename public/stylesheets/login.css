@@ -102,3 +102,7 @@ button{
     font-family: "Noto Sans";
     width: 100%;
 }
+.error{
+    color:red;
+    font-family: "Noto Sans";
+}

@@ -43,13 +43,14 @@ router.post("/register",(req,res,next)=>{
 
 
 router.get("/login",(req,res)=>{
-    res.render("login.ejs",{error :req.flash("error")});
+    
+    res.render("login.ejs",{ error:req.flash("error")});
 });
 
 router.post("/login",passport.authenticate("local",{
     successRedirect :"/home",
     failureRedirect : "/login",
-    failureFlash: true
+    failureFlash: true,
   }),function(req,res){
   })
 
