@@ -79,7 +79,7 @@ app.get("/logout",(req,res,next)=>{
 });
 
 app.get("/home",isLoggedIn,(req,res)=>{
-    res.send("Heklo");
+    res.render("home.ejs");
 });
 
 function isLoggedIn(req,res,next){
