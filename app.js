@@ -34,7 +34,7 @@ app.get("/", ( req, res)=>{
 });
 
 app.get("/register", (req,res)=>{
-    res.render("register.ejs");
+    res.render("register.ejs",{existsError : req.flash('error')});
 });
 
 app.post("/register",(req,res,next)=>{
@@ -44,10 +44,17 @@ app.post("/register",(req,res,next)=>{
         fullname: req.body.fullname
     });
     console.log(req.body);
-    user.register(userData,req.body.password)
-    .then(()=>{
-    passport.authenticate("local")(req,res,()=>{
-      res.redirect("/home");
+    user.register(userData, req.body.password, (err) => {
+        if (err) {
+            // If the error is due to a duplicate username
+            if (err.name === 'UserExistsError') {
+                req.flash("error","Username already exists.");
+                return res.redirect('/register');
+            }
+        }
+        // Registration successful
+        passport.authenticate("local")(req,res,()=>{
+            res.redirect("/home");
     })
    })
 })
