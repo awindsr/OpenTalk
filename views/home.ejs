@@ -63,8 +63,16 @@
                 </div>
             </div>
         </div>
-        <div class="seconddiv"></div>
+        <div class="seconddiv">
+            <form id="form" action="">
+                <input id="input" autocomplete="off" /><button>Send</button>
+              </form>
+
+              <ul id="messages"></ul>  <!--the messages appear here-->
+        </div>
     </div>
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./javascripts/socket.js"></script>
 
 </html>

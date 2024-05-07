@@ -4,8 +4,12 @@ import passport from "passport";
 import localStrategy from "passport-local";
 import expressSession from "express-session";
 import flash from "connect-flash";
+import { Server } from "socket.io";
+import { createServer } from 'node:http';
 
 const app=express();
+const server = createServer(app);
+const io = new Server(server);
 const PORT=3000;
 
 app.set("view engine", "ejs");
@@ -87,8 +91,17 @@ function isLoggedIn(req,res,next){
     res.redirect("/login");
   }
 
+io.on('connection', (socket) => {
+    console.log('A user connected');
+    socket.on('chat message', (msg) => {
+        io.emit('chat message',msg);
+      });
+    socket.on('disconnect', () => {
+        console.log('A user disconnected');
+      });
+});
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Listening to port ${PORT}`);
 });
 
