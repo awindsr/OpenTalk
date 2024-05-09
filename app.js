@@ -9,7 +9,9 @@ import { createServer } from 'node:http';
 
 const app=express();
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server,{
+    connectionStateRecovery: {}
+});
 const PORT=3000;
 
 app.set("view engine", "ejs");
