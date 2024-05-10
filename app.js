@@ -85,14 +85,17 @@ app.get("/logout", (req, res, next) => {
 });
 
 app.get("/home", isLoggedIn, (req, res) => {
-    const username = req.user.username;
+    const username = req.session.passport.user;
     res.redirect("/home/" + username);
 });
 
 app.get("/home/:username", isLoggedIn, (req, res) => {
-    const username = req.params.username;
-    
-    res.render("home.ejs");
+    if(req.params.username !== req.session.passport.user){
+        res.redirect("/login");
+    }
+    else{
+        res.render("home.ejs");
+    }
 });
 
 function isLoggedIn(req, res, next) {
