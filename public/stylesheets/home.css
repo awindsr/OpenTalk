@@ -166,8 +166,8 @@ body{
 .profile{
     height:70px;
     width:70px;
+    background: #000;
     border-radius: 50%;
-    background-image: url(profile.png);
     background-position: center;
     background-size: cover;
 }
