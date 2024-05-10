@@ -1,0 +1,46 @@
+.logoutContainer{
+    display: none;
+    background-color: black;
+    color: aliceblue;
+    position: fixed;
+    height: 200px;
+    width: 350px;
+    z-index: 1;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: "Noto Sans";
+}
+.show{
+    display: block;
+}
+.logoutContainer h1{
+    margin-top: 40px;
+}
+.logoutContainer p{
+    font-size: large;
+    margin-top: 10px;
+}
+
+.logoutButtonContainer{
+    position: absolute;
+    bottom: 0px;
+    height: 40px;
+    overflow: hidden;
+    gap: 0px;
+}
+.logoutButtonContainer button{
+    height: 40px;
+    width: 175px;
+    background-color:rgb(255, 102, 6);
+    border: none;
+}
+.logoutButtonContainer .button1{
+    border-right: 2px solid black;
+}
+.logoutButtonContainer .button2{
+    border-left: 2px solid black;
+}
