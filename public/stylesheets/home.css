@@ -164,14 +164,8 @@ body{
     gap:15px;
 }
 .profile{
-<<<<<<< HEAD
-    height:70px;
-    width:70px;
-    background: #000;
-=======
     height:60px;
     width:60px;
->>>>>>> d386b56ddc8b0438b5f0d97eb47a43f5c6a0ce98
     border-radius: 50%;
     background-position: center;
     background-size: cover;
