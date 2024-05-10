@@ -60,7 +60,7 @@ app.post("/register", (req, res, next) => {
         }
         // Registration successful
         passport.authenticate("local")(req, res, () => {
-            res.redirect("/home/username");
+            res.redirect("/home");
         })
     })
 })
