@@ -102,16 +102,22 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
     res.redirect("/login");
 }
+//socket io code//////////////////////////////////////////
 
 io.on('connection', (socket) => {
-    console.log('A user connected');
-    socket.on('chat message', (msg) => {
-        io.emit('chat message', msg);
-    });
+    console.log('a user connected :'+ socket.id);
     socket.on('disconnect', () => {
-        console.log('A user disconnected');
+        console.log('user disconnected :'+ socket.id);
+      });
+  });
+
+io.on('connection', (socket) => {
+    socket.on('chat message', (msg) => {
+      socket.broadcast.emit('chat message', msg);
     });
-});
+  });
+
+//////////////////////////////////////////////////////////
 
 server.listen(PORT, () => {
     console.log(`Listening to port ${PORT}`);

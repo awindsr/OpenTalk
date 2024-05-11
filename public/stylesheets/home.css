@@ -44,7 +44,7 @@ body{
 .logout{
     width:43px;
     height:43px;
-    
+    cursor: pointer;
     text-decoration: none;
     color: #E2E4E9;
     display: flex;
@@ -279,17 +279,6 @@ body{
     color: white;
     background-color: #FF6606;
 }
-/* #messages{
-    color:white;
-    background-color: #FF6606;
-    display: inline-block;
-    font-size: larger;
-    padding:5px 14px;
-    border-radius: 20px;
-    border-top-left-radius: 0px;
-    text-decoration: none;
-    list-style: none;
-} */
 
 #messagediv{
     padding:10px 10px;
@@ -327,6 +316,8 @@ body{
     width:100%;
     display: flex;
     justify-content:flex-end;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
     
 }
 .othermessage>span{
@@ -336,4 +327,5 @@ body{
     border-top-right-radius:0px;
     color:white;
     font-size: 20px;
+    max-width: 100%;
 }
