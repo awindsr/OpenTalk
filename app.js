@@ -71,14 +71,12 @@ app.get("/login", (req, res) => {
   res.render("login.ejs", { error: req.flash("error") });
 });
 
-app.post(
-  "/login",
-  passport.authenticate("local", {
+app.post("/login",passport.authenticate("local", {
     successRedirect: "/home",
     failureRedirect: "/login",
     failureFlash: true,
   }),
-  function (req, res) {}
+  function (req, res) { }
 );
 
 app.get("/logout", (req, res, next) => {
@@ -103,6 +101,19 @@ app.get("/home/:username", isLoggedIn, (req, res) => {
   }
 });
 
+app.get("/group", isLoggedIn, (req, res) => {
+  const username = req.session.passport.user;
+  res.redirect("/group/" + username);
+});
+
+app.get("/group/:username", isLoggedIn, (req, res) => {
+  if (req.params.username !== req.session.passport.user) {
+    res.redirect("/login");
+  } else {
+    res.render("group.ejs");
+  }
+});
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect("/login");
@@ -124,9 +135,9 @@ io.on("connection", (socket) => {
 //   });
 
 io.on("connection", (socket) => {
-    socket.join("some room");
+  socket.join("some room");
 
-    socket.on("chat message", (msg) => {
+  socket.on("chat message", (msg) => {
     // Broadcast to all connected clients in the room except the sender
     socket.to("some room").emit("chat message", msg);
 
