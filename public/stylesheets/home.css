@@ -273,11 +273,11 @@ body{
     border-radius: 50%;
     border:none;
     color: white;
-    background-color: #FF4500;
+    background-color: #FF6606;
 }
 /* #messages{
     color:white;
-    background-color: #FF4500;
+    background-color: #FF6606;
     display: inline-block;
     font-size: larger;
     padding:5px 14px;
@@ -287,32 +287,46 @@ body{
     list-style: none;
 } */
 
-.messagediv{
+#messagediv{
     padding:10px 10px;
     width:100%;
     display: flex;
     flex-direction: column;
     height:470px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overflow-wrap: normal;
+
     background-color:#E1E3E8;
     border-radius: 10px;
     gap:2px;
 }
+.mymessage{
+    width:100%;
+    display: flex;
+    justify-content:flex-start ;
+    
+}
 .mymessage>span{
     padding:4px 10px;
-    background-color: #FF4500;
-    display: inline-block;
+    background-color: #FF6606;
     border-radius: 20px;
     border-top-left-radius:0px;
     color:white;
     font-size: 20px;
+    word-wrap: break-word;
+}
+.othermessage{
+    width:100%;
+    display: flex;
+    justify-content:flex-end;
+    
 }
 .othermessage>span{
     padding:4px 10px;
-    background-color: #FF4500;
-    display: inline-block;
+    background-color: #000000;
     border-radius: 20px;
-    border-top-left-radius:0px;
+    border-top-right-radius:0px;
     color:white;
     font-size: 20px;
 }
