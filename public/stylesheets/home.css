@@ -41,7 +41,7 @@ body{
 .firstinnerdiv>img{
     max-width:45px;
 }
-.firstinnerdiv>a{
+.logout{
     width:43px;
     height:43px;
     
@@ -51,6 +51,8 @@ body{
     align-items: center;
     justify-content: center;
     font-size:30px;
+    background-color: #000000;
+    border: none;
 }
 .secondinnerdiv{
     width:100%;
@@ -118,7 +120,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: orangered;
+    background-color: rgb(255, 102, 6);
 }
 .chatbox>a>i{
     font-size:24px;
@@ -175,7 +177,7 @@ body{
 .messages{
     width:18px;
     height:18px;
-    background-color: orangered;
+    background-color: rgb(255, 102, 6);
     border-radius: 50%;
     display: flex;
     align-items: center;

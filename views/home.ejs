@@ -6,15 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="stylesheet" href="/stylesheets/logout.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
 </head>
 
 <body>
+    <div class="logoutContainer">
+        <h1>Log out</h1>
+        <p>Are you sure you want to log out ?</p>
+        <div class="logoutButtonContainer">
+            <button class="button1">OK</button><button class="button2">Cancel</button>
+        </div>
+    </div>
     <div class="maindiv">
         <div class="firstdiv">
             <div class="firstinnerdiv">
                 <img src="/images/OpenTalkLogo.png" alt="logo">
-                <a href="/logout"><i class="ri-logout-box-line"></i></a>
+                <button class="logout"><i class="ri-logout-box-line"></i></button>
             </div>
             <div class="secondinnerdiv">
                 <div class="chatbox">
@@ -104,5 +112,6 @@
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/javascripts/socket.js"></script>
+<script src="/javascripts/home.js"></script>
 
 </html>
