@@ -257,7 +257,7 @@ body{
     border-radius: 20px;
     align-items: center;
 }
-#form>input{
+#form>#input{
     width:90%;
     height:40px;
     background-color: transparent;
@@ -265,7 +265,11 @@ body{
     border-radius: 20px;
     padding:0px 25px;
     color: #000000;
+    resize: none;
+    padding-top: 10px;
+    overflow: hidden;
 }
+
 #form>button{
     width:40px;
     height:40px;
@@ -305,7 +309,9 @@ body{
     width:100%;
     display: flex;
     justify-content:flex-start ;
-    
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+
 }
 .mymessage>span{
     padding:4px 10px;
@@ -314,9 +320,10 @@ body{
     border-top-left-radius:0px;
     color:white;
     font-size: 20px;
-    word-wrap: break-word;
+    max-width: 100%;
 }
 .othermessage{
+
     width:100%;
     display: flex;
     justify-content:flex-end;

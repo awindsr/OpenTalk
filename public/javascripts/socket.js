@@ -15,7 +15,7 @@ form.addEventListener('submit', (e) => {
 
 socket.on('chat message', (msg) => {
     const item = document.createElement('div');
-    item.classList.add("othermessage");
+    item.classList.add("mymessage");
     item.innerHTML ="<span>"+msg+"</span>"
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
