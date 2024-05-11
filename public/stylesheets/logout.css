@@ -17,6 +17,9 @@
 .show{
     display: block;
 }
+.blur{
+    filter: blur(3px);
+}
 .logoutContainer h1{
     margin-top: 40px;
 }
