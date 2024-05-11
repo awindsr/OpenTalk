@@ -41,12 +41,30 @@ body{
 .firstinnerdiv>img{
     max-width:45px;
 }
+.optionlist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:20px;
+
+}
+.option{
+    color:#ffffff;
+    font-size:24px;
+    text-decoration: none;
+    transition: 0.3s;
+
+}
+.option:hover{
+    color: #FF6606;  
+}
 .logout{
     width:43px;
     height:43px;
     cursor: pointer;
     text-decoration: none;
-    color: #E2E4E9;
+    color:#FF6606;
     display: flex;
     align-items: center;
     justify-content: center;
