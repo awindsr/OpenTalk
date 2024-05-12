@@ -127,6 +127,19 @@ app.get("/addUser/:username", isLoggedIn, (req, res) => {
   }
 });
 
+app.get("/global", isLoggedIn, (req, res) => {
+  const username = req.session.passport.user;
+  res.redirect("/global/" + username);
+});
+
+app.get("/global/:username", isLoggedIn, (req, res) => {
+  if (req.params.username !== req.session.passport.user) {
+    res.redirect("/login");
+  } else {
+    res.render("global.ejs");
+  }
+});
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect("/login");
