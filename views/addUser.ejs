@@ -49,67 +49,27 @@
                 <hr>
                 <h4>Existing Members</h4>
                 <ul class="existingUserGroup">
-                    <li class="existingUser">
-                        <div class="profile"></div>
-                        <div class="description">
-                            <h5>James Bond</h5>
-                            <p>Lorem ipsum dolor sit </p>
-                        </div>
-                        <!-- if not friend -->
-                        <button class="btnAdd">Add <i class="ri-user-add-fill"></i></button>
-                        <!-- else if friend -->
-                        <!-- <button class="btnRemove">Remove <i class="ri-delete-bin-fill"></i></button>  -->
-                    </li>
+                    <% for (let user of existingUsers){%>
+                        <li class="existingUser">
+                            <div class="profile"></div>
+                            <div class="description">
+                                <h5>
+                                    <%= user.fullname%>
+                                </h5>
+                                <p>
+                                    <%= user.username%>
+                                </p>
+                            </div>
+                            <!-- if  friend -->
+                            <% if(locals.friendsList[0].friends.includes(user.username)) {%>
+                                <form action="/removeFriend/<%=user.username%>" method="post"><button  class="btnRemove">Remove <i class="ri-delete-bin-fill"></i></button></form>
 
-                    <li class="existingUser">
-                        <div class="profile"></div>
-                        <div class="description">
-                            <h5>James Bond</h5>
-                            <p>Lorem ipsum dolor sit </p>
-                        </div>
-                    </li>
-
-                    <li class="existingUser">
-                        <div class="profile"></div>
-                        <div class="description">
-                            <h5>James Bond</h5>
-                            <p>Lorem ipsum dolor sit </p>
-                        </div>
-                    </li>
-
-                    <li class="existingUser">
-                        <div class="profile"></div>
-                        <div class="description">
-                            <h5>James Bond</h5>
-                            <p>Lorem ipsum dolor sit </p>
-                        </div>
-                    </li>
-
-                    <li class="existingUser">
-                        <div class="profile"></div>
-                        <div class="description">
-                            <h5>James Bond</h5>
-                            <p>Lorem ipsum dolor sit </p>
-                        </div>
-                    </li>
-
-                    <li class="existingUser">
-                        <div class="profile"></div>
-                        <div class="description">
-                            <h5>James Bond</h5>
-                            <p>Lorem ipsum dolor sit </p>
-                        </div>
-                    </li>
-
-                    <li class="existingUser">
-                        <div class="profile"></div>
-                        <div class="description">
-                            <h5>James Bond</h5>
-                            <p>Lorem ipsum dolor sit </p>
-                        </div>
-                        
-                    </li>
-                    
+                            <!--  if not friend -->
+                            <%}else { %>
+                                <form action="/addFriend/<%=user.username%>" method="post"><button class="btnAdd">Add <i class="ri-user-add-fill"></i></button></form>
+                            <%}%>
+                        </li>
+                        <%}%>
                 </ul>
             </div>
         </div>
@@ -117,5 +77,6 @@
 
 </body>
 <script src="/javascripts/logout.js"></script>
+<script src="/javascripts/addUser.js"></script>
 
 </html>

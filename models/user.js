@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
       fullname: {
         type: String,
         required: true
-      }
+      },
+      friends: [String]
 });
 
 userSchema.plugin(plm);

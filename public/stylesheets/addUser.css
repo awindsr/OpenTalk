@@ -169,6 +169,7 @@ li{
     background-color: #b9f7bbff;
     color: green;
     font-weight: 500;
+    cursor: pointer;
 }
 .btnRemove{
     position: absolute;
@@ -180,4 +181,5 @@ li{
     background-color: rgb(242, 198, 198);
     color: red;
     font-weight: 500;
+    cursor: pointer;
 }
