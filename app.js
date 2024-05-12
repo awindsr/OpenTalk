@@ -114,6 +114,19 @@ app.get("/group/:username", isLoggedIn, (req, res) => {
   }
 });
 
+app.get("/addUser", isLoggedIn, (req, res) => {
+  const username = req.session.passport.user;
+  res.redirect("/addUser/" + username);
+});
+
+app.get("/addUser/:username", isLoggedIn, (req, res) => {
+  if (req.params.username !== req.session.passport.user) {
+    res.redirect("/login");
+  } else {
+    res.render("addUser.ejs");
+  }
+});
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect("/login");
