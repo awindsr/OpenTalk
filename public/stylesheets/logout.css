@@ -13,7 +13,6 @@
     transform: translate(-50%,-45%);
     border-radius: 7px;
     overflow: hidden;
-    font-family: "Noto Sans";
 }
 .show{
     display: block;

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Friends</title>
+    <link rel="icon" href="/images/OpenTalkLogo.png">
+    <link rel="stylesheet" href="/stylesheets/addUser.css">
+    <link rel="stylesheet" href="/stylesheets/logout.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="logoutContainer">
+        <h1>Log out <i class="ri-logout-box-r-line"></i></h1>
+        <p>Are you sure you want to log out ?</p>
+        <div class="logoutButtonContainer">
+            <button class="button1">OK</button><button class="button2">CANCEL</button>
+        </div>
+    </div>
+
+    <div class="firstdiv">
+        <div class="firstinnerdiv">
+            <img src="/images/OpenTalkLogo.png" alt="logo">
+            <div class="optionlist">
+                <a href="/home" class="option"><i class="ri-group-2-line friends"></i></a>
+                <a href="addUser" style="color: rgb(255, 102, 6);" class="option"><i
+                        class="ri-user-add-line adduser"></i></a>
+                <a href="/group" class="option"><i class="ri-team-line group"></i></a>
+                <a href="#" class="option"><i class="ri-earth-line global"></i></a>
+            </div>
+            <button class="logout"><i class="ri-logout-box-line"></i></button>
+        </div>
+        <div class="secondinnerdiv">
+            <div class="addUserContainer">
+                <h2>Add Friends</h2>
+                <hr>
+                <h4>Member Username</h4>
+                <form id="form" action="">
+                    <input id="input" type="text" autocomplete="off" placeholder="Enter Username">
+                    <button class="submitBtn" type="submit">Search <i class="ri-search-2-line"></i></button>
+                </form>
+                <hr>
+                <h4>Existing Members</h4>
+                <ul class="existingUserGroup">
+                    <li class="existingUser">
+                        <div class="profile"></div>
+                        <div class="description">
+                            <h5>James Bond</h5>
+                            <p>Lorem ipsum dolor sit </p>
+                        </div>
+                        <!-- if not friend -->
+                        <button class="btnAdd">Add <i class="ri-user-add-fill"></i></button>
+                        <!-- else if friend -->
+                        <!-- <button class="btnRemove">Remove <i class="ri-delete-bin-fill"></i></button>  -->
+                    </li>
+
+                    <li class="existingUser">
+                        <div class="profile"></div>
+                        <div class="description">
+                            <h5>James Bond</h5>
+                            <p>Lorem ipsum dolor sit </p>
+                        </div>
+                    </li>
+
+                    <li class="existingUser">
+                        <div class="profile"></div>
+                        <div class="description">
+                            <h5>James Bond</h5>
+                            <p>Lorem ipsum dolor sit </p>
+                        </div>
+                    </li>
+
+                    <li class="existingUser">
+                        <div class="profile"></div>
+                        <div class="description">
+                            <h5>James Bond</h5>
+                            <p>Lorem ipsum dolor sit </p>
+                        </div>
+                    </li>
+
+                    <li class="existingUser">
+                        <div class="profile"></div>
+                        <div class="description">
+                            <h5>James Bond</h5>
+                            <p>Lorem ipsum dolor sit </p>
+                        </div>
+                    </li>
+
+                    <li class="existingUser">
+                        <div class="profile"></div>
+                        <div class="description">
+                            <h5>James Bond</h5>
+                            <p>Lorem ipsum dolor sit </p>
+                        </div>
+                    </li>
+
+                    <li class="existingUser">
+                        <div class="profile"></div>
+                        <div class="description">
+                            <h5>James Bond</h5>
+                            <p>Lorem ipsum dolor sit </p>
+                        </div>
+                        
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="/javascripts/home.js"></script>
+
+</html>
