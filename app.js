@@ -119,11 +119,61 @@ app.get("/addUser", isLoggedIn, (req, res) => {
   res.redirect("/addUser/" + username);
 });
 
-app.get("/addUser/:username", isLoggedIn, (req, res) => {
-  if (req.params.username !== req.session.passport.user) {
-    res.redirect("/login");
-  } else {
-    res.render("addUser.ejs");
+app.get("/addUser/:username", isLoggedIn,async (req, res) => {
+  try{
+    if (req.params.username !== req.session.passport.user) {
+      res.redirect("/login");
+    } else {
+      //All existing users except the client
+      const existingUserList = await user.find(  
+        {username:{$ne:req.params.username}} , 
+        {_id:0,username:1,fullname:1}
+      );
+
+      //Friends of the client
+      const friendsList = await user.find(  
+        {username:req.params.username} , 
+        {_id:0,friends:1}
+      );
+
+      res.render("addUser.ejs",{
+        existingUsers :existingUserList,
+        friendsList :friendsList
+      });
+    }
+  }
+  catch(err){
+    console.log(err);
+  }
+});
+
+app.post("/addFriend/:newFriendName", isLoggedIn,async (req, res) => {
+  try{
+    const myUsername = req.session.passport.user;
+    const frdUsername = req.params.newFriendName;
+    await user.updateOne(
+      { username: myUsername },
+      { $push:{friends:frdUsername}}
+    );
+    res.redirect("/addUser");
+  }
+  catch(err){
+    console.log(err);
+  }
+});
+
+app.post("/removeFriend/:oldFriendName", isLoggedIn,async (req, res) => {
+  try{
+    const myUsername = req.session.passport.user;
+    const frdUsername = req.params.oldFriendName;
+    await user.updateOne(
+      { username: myUsername },
+      { $pull:{friends:frdUsername}}
+    );
+    res.redirect("/addUser");
+  }
+  catch(err){
+    console.log(err);
   }
 });
 
