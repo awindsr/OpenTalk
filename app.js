@@ -1,5 +1,6 @@
 import express from "express";
 import user from "./models/user.js";
+import { userSort } from './public/javascripts/functions.js';
 import passport from "passport";
 import localStrategy from "passport-local";
 import expressSession from "express-session";
@@ -137,19 +138,23 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
         { username: { $ne: req.params.username } },
         { _id: 0, username: 1, fullname: 1 }
       );
-
-      //To filter existingUsers according to search
-      if (searchQuery !== undefined && searchQuery !== '') {
-        existingUserList = existingUserList.filter(user => user.username.includes(searchQuery));
-      }
+      console.log("Existing Users:"+existingUserList);
 
       //Friends of the client
-      const friendsList = await user.find(
+      let friendsList = await user.find(
         { username: req.params.username },
         { _id: 0, friends: 1 }
       );
+      console.log("Friends : "+ friendsList);
 
-      const sortedUserList = userSort(friendsList, existingUserList);
+      let sortedUserList = userSort(friendsList, existingUserList);
+
+      console.log("Sorted Users : "+ sortedUserList);
+
+      //To filter sorted Users according to search
+      if (searchQuery !== undefined && searchQuery !== '') {
+        sortedUserList = sortedUserList.filter(user => user.username.includes(searchQuery));
+      }
 
       res.render("addUser.ejs", {
         existingUsers: sortedUserList,
@@ -208,34 +213,6 @@ app.get("/global/:username", isLoggedIn, (req, res) => {
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect("/login");
-}
-
-//function to sort the users such that, users who are not friends come first(Users who can be added)
-function userSort(friendsList, existingUserList) {
-  // Separate friends into existing and non-existing
-  const existingFriends = [];
-  const nonExistingFriends = [];
-
-  friendsList[0].friends.forEach(friend => {
-    const existingUser = existingUserList.find(user => user.username === friend);
-    if (existingUser) {
-      existingFriends.push(existingUser);
-    } else {
-      nonExistingFriends.push(friend);
-    }
-  });
-
-  // Sort the existing user list
-  existingUserList.sort((a, b) => {
-    const aIndex = existingFriends.findIndex(friend => friend.username === a.username);
-    const bIndex = existingFriends.findIndex(friend => friend.username === b.username);
-    return aIndex - bIndex;
-  });
-
-  // Concatenate the arrays
-  const sortedUserList = existingUserList.concat(nonExistingFriends.map(username => ({ username })));
-
-  return sortedUserList;
 }
 
 //socket io code//////////////////////////////////////////
