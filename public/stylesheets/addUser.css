@@ -162,6 +162,7 @@ li{
 .btnAdd{
     position: absolute;
     right: 0px;
+    bottom: 15px;
     width: 80px;
     border-radius: 5px;
     border: none;
@@ -174,6 +175,7 @@ li{
 .btnRemove{
     position: absolute;
     right: 0px;
+    bottom: 15px;
     width: 80px;
     border-radius: 5px;
     border: none;

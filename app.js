@@ -91,15 +91,44 @@ app.get("/logout", (req, res, next) => {
 
 app.get("/home", isLoggedIn, (req, res) => {
   const username = req.session.passport.user;
-  res.redirect("/home/" + username);
+  const searchName = req.query.search;
+  let redirectUrl = "/home/" + username;
+  if (searchName !== undefined) {
+    redirectUrl += "?search=" + searchName;
+  }
+  res.redirect(redirectUrl);
 });
 
-app.get("/home/:username", isLoggedIn, (req, res) => {
-  if (req.params.username !== req.session.passport.user) {
-    res.redirect("/login");
-  } else {
-    res.render("home.ejs");
+app.get("/home/:username", isLoggedIn,async (req, res) => {
+  try{
+    const searchQuery = req.query.search;
+
+    if (req.params.username !== req.session.passport.user) {
+      res.redirect("/login");
+    }
+    else {
+      //Username of Friends of the client
+      let friendsListList = await user.find(
+        { username: req.params.username },
+        { _id: 0, friends: 1 }
+      );
+      let friendsList=friendsListList[0].friends;
+
+      //Details of each friend of client
+      let friendDetailsList = await user.find(
+        { username:  { $in: friendsList } },
+        { _id: 0, username: 1, fullname: 1 }
+      );
+
+      res.render("home.ejs",{
+        friendDetailsList: friendDetailsList
+      });
+    }
   }
+  catch(err){
+    console.log(err);
+  }
+  
 });
 
 app.get("/group", isLoggedIn, (req, res) => {
@@ -132,24 +161,21 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
 
     if (req.params.username !== req.session.passport.user) {
       return res.redirect("/login");
-    } else {
-      //All existing users except the client
+    } 
+    else {
+      //All existing users details except the client
       let existingUserList = await user.find(
         { username: { $ne: req.params.username } },
         { _id: 0, username: 1, fullname: 1 }
       );
-      console.log("Existing Users:"+existingUserList);
 
-      //Friends of the client
+      //Usernames of Friends of the client
       let friendsList = await user.find(
         { username: req.params.username },
         { _id: 0, friends: 1 }
       );
-      console.log("Friends : "+ friendsList);
 
       let sortedUserList = userSort(friendsList, existingUserList);
-
-      console.log("Sorted Users : "+ sortedUserList);
 
       //To filter sorted Users according to search
       if (searchQuery !== undefined && searchQuery !== '') {

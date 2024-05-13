@@ -186,11 +186,12 @@ body{
     gap:15px;
 }
 .profile{
-    height:60px;
-    width:60px;
+    height:50px;
+    width:50px;
     border-radius: 50%;
     background-position: center;
     background-size: cover;
+    background-color: #000000;
 }
 
 /* //////////////////////////////////// */
@@ -238,9 +239,6 @@ body{
     text-decoration: none;
     color: #000000;
     font-size:24px;
-    /* width:30px;
-    height:30px;
-    align-items: center; */
 }
 .fourthinnerdiv{
     width:100%;
@@ -335,4 +333,14 @@ body{
     color:white;
     font-size: 20px;
     max-width: 100%;
+}
+.noUserFoundImage{
+    width: 366.6px;
+    height: 340px;
+    object-fit: cover;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
