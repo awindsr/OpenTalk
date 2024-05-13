@@ -42,8 +42,8 @@
                 <h2>Add Friends</h2>
                 <hr>
                 <h4>Member Username</h4>
-                <form id="form" action="">
-                    <input id="input" type="text" autocomplete="off" placeholder="Enter Username">
+                <form id="form" action="/addUser">
+                    <input id="input" name="search" type="text" autocomplete="off" placeholder="Enter Username">
                     <button class="submitBtn" type="submit">Search <i class="ri-search-2-line"></i></button>
                 </form>
                 <hr>
@@ -63,7 +63,6 @@
                             <!-- if  friend -->
                             <% if(locals.friendsList[0].friends.includes(user.username)) {%>
                                 <form action="/removeFriend/<%=user.username%>" method="post"><button  class="btnRemove">Remove <i class="ri-delete-bin-fill"></i></button></form>
-
                             <!--  if not friend -->
                             <%}else { %>
                                 <form action="/addFriend/<%=user.username%>" method="post"><button class="btnAdd">Add <i class="ri-user-add-fill"></i></button></form>

@@ -123,9 +123,9 @@ input{
     color: white;
     font-weight: 500;
 }
-ul{
+.existingUserGroup{
     margin-top: 10px;
-    width: 94%;
+    width: 366.6px;
     height: 350px;
     list-style-type: none;
     overflow: auto;
@@ -182,4 +182,9 @@ li{
     color: red;
     font-weight: 500;
     cursor: pointer;
+}
+.noUserFoundImage{
+    width: 366.6px;
+    height: 340px;
+    object-fit: cover;
 }

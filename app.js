@@ -71,11 +71,11 @@ app.get("/login", (req, res) => {
   res.render("login.ejs", { error: req.flash("error") });
 });
 
-app.post("/login",passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/login",
-    failureFlash: true,
-  }),
+app.post("/login", passport.authenticate("local", {
+  successRedirect: "/home",
+  failureRedirect: "/login",
+  failureFlash: true,
+}),
   function (req, res) { }
 );
 
@@ -114,65 +114,80 @@ app.get("/group/:username", isLoggedIn, (req, res) => {
   }
 });
 
+
 app.get("/addUser", isLoggedIn, (req, res) => {
   const username = req.session.passport.user;
-  res.redirect("/addUser/" + username);
+  const searchName = req.query.search;
+  let redirectUrl = "/addUser/" + username;
+  if (searchName !== undefined) {
+    redirectUrl += "?search=" + searchName;
+  }
+  res.redirect(redirectUrl);
 });
 
-app.get("/addUser/:username", isLoggedIn,async (req, res) => {
-  try{
+app.get("/addUser/:username", isLoggedIn, async (req, res) => {
+  try {
+    const searchQuery = req.query.search;
+
     if (req.params.username !== req.session.passport.user) {
-      res.redirect("/login");
+      return res.redirect("/login");
     } else {
       //All existing users except the client
-      const existingUserList = await user.find(  
-        {username:{$ne:req.params.username}} , 
-        {_id:0,username:1,fullname:1}
+      let existingUserList = await user.find(
+        { username: { $ne: req.params.username } },
+        { _id: 0, username: 1, fullname: 1 }
       );
+
+      //To filter existingUsers according to search
+      if (searchQuery !== undefined && searchQuery !== '') {
+        existingUserList = existingUserList.filter(user => user.username.includes(searchQuery));
+      }
 
       //Friends of the client
-      const friendsList = await user.find(  
-        {username:req.params.username} , 
-        {_id:0,friends:1}
+      const friendsList = await user.find(
+        { username: req.params.username },
+        { _id: 0, friends: 1 }
       );
 
-      res.render("addUser.ejs",{
-        existingUsers :existingUserList,
-        friendsList :friendsList
+      const sortedUserList = userSort(friendsList, existingUserList);
+
+      res.render("addUser.ejs", {
+        existingUsers: sortedUserList,
+        friendsList: friendsList
       });
     }
   }
-  catch(err){
+  catch (err) {
     console.log(err);
   }
 });
 
-app.post("/addFriend/:newFriendName", isLoggedIn,async (req, res) => {
-  try{
+app.post("/addFriend/:newFriendName", isLoggedIn, async (req, res) => {
+  try {
     const myUsername = req.session.passport.user;
     const frdUsername = req.params.newFriendName;
     await user.updateOne(
       { username: myUsername },
-      { $push:{friends:frdUsername}}
+      { $push: { friends: frdUsername } }
     );
     res.redirect("/addUser");
   }
-  catch(err){
+  catch (err) {
     console.log(err);
   }
 });
 
-app.post("/removeFriend/:oldFriendName", isLoggedIn,async (req, res) => {
-  try{
+app.post("/removeFriend/:oldFriendName", isLoggedIn, async (req, res) => {
+  try {
     const myUsername = req.session.passport.user;
     const frdUsername = req.params.oldFriendName;
     await user.updateOne(
       { username: myUsername },
-      { $pull:{friends:frdUsername}}
+      { $pull: { friends: frdUsername } }
     );
     res.redirect("/addUser");
   }
-  catch(err){
+  catch (err) {
     console.log(err);
   }
 });
@@ -194,6 +209,35 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) return next();
   res.redirect("/login");
 }
+
+//function to sort the users such that, users who are not friends come first(Users who can be added)
+function userSort(friendsList, existingUserList) {
+  // Separate friends into existing and non-existing
+  const existingFriends = [];
+  const nonExistingFriends = [];
+
+  friendsList[0].friends.forEach(friend => {
+    const existingUser = existingUserList.find(user => user.username === friend);
+    if (existingUser) {
+      existingFriends.push(existingUser);
+    } else {
+      nonExistingFriends.push(friend);
+    }
+  });
+
+  // Sort the existing user list
+  existingUserList.sort((a, b) => {
+    const aIndex = existingFriends.findIndex(friend => friend.username === a.username);
+    const bIndex = existingFriends.findIndex(friend => friend.username === b.username);
+    return aIndex - bIndex;
+  });
+
+  // Concatenate the arrays
+  const sortedUserList = existingUserList.concat(nonExistingFriends.map(username => ({ username })));
+
+  return sortedUserList;
+}
+
 //socket io code//////////////////////////////////////////
 
 io.on("connection", (socket) => {
@@ -209,7 +253,7 @@ io.on("connection", (socket) => {
 //       socket.broadcast.emit('chat message', msg);
 //     });
 //   });
-  //////////////////////////////////////////////
+//////////////////////////////////////////////
 
 io.on("connection", (socket) => {
   socket.join("some room");
@@ -227,3 +271,4 @@ io.on("connection", (socket) => {
 server.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`);
 });
+
