@@ -164,7 +164,7 @@ body{
     width:100%;
     background-color: rgb(255, 255, 255);
     height: 98%;
-    
+    overflow: auto;
 }
 .user1{
     width:100%; 
@@ -206,14 +206,28 @@ body{
 /* //////////////////////////////////// */
 .seconddiv{
     height:100%;
-    width:100%;
     display: flex;
     gap:5px;
     flex-direction: column;
     width:60%;
     border-radius: 10px;
     background-color: rgba(31, 36, 36, 0);
-    
+}
+.emptySecondDiv{
+    height:100%;
+    width:60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.emptySecondDiv img{
+    height: 100px;
+    width: 100px;
+}
+.emptySecondDiv h3{
+    color: #ababab;
 }
 .thirdinnerdiv{
     padding:0px 20px;
@@ -356,4 +370,7 @@ body{
 }
 .clicked{
     background-color: #E1E3E8;
+}
+.hide{
+    display: none;
 }

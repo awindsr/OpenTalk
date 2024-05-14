@@ -89,6 +89,22 @@ app.get("/logout", (req, res, next) => {
   });
 });
 
+/**************************************************************************************************************************************/
+app.get("/profile", isLoggedIn, (req, res) => {
+  const username = req.session.passport.user;
+  res.redirect("/profile/" + username);
+});
+
+app.get("/profile/:username", isLoggedIn, (req, res) => {
+  if (req.params.username !== req.session.passport.user) {
+    res.redirect("/login");
+  } else {
+    res.render("profile.ejs");
+  }
+});
+
+/**************************************************************************************************************************************/
+
 app.get("/home", isLoggedIn, (req, res) => {
   const username = req.session.passport.user;
   const searchName = req.query.search;
@@ -136,6 +152,8 @@ app.get("/home/:username", isLoggedIn,async (req, res) => {
   
 });
 
+/*************************************************************************************************************************************/
+
 app.get("/group", isLoggedIn, (req, res) => {
   const username = req.session.passport.user;
   res.redirect("/group/" + username);
@@ -149,6 +167,7 @@ app.get("/group/:username", isLoggedIn, (req, res) => {
   }
 });
 
+/**************************************************************************************************************************************/
 
 app.get("/addUser", isLoggedIn, (req, res) => {
   const username = req.session.passport.user;
@@ -227,6 +246,8 @@ app.post("/removeFriend/:oldFriendName", isLoggedIn, async (req, res) => {
     console.log(err);
   }
 });
+
+/****************************************************************************************************************************************/
 
 app.get("/global", isLoggedIn, (req, res) => {
   const username = req.session.passport.user;

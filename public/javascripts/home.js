@@ -25,5 +25,8 @@ for (let friend of allFriendsList){
         document.querySelector(".selecteduserdetails h4").innerText = fullname;
         document.querySelector(".selecteduserdetails p").innerText = username;
 
+        document.querySelector(".emptySecondDiv").classList.add("hide");
+        document.querySelector(".seconddiv").classList.remove("hide");
+
     })
 }
