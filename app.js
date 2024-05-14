@@ -120,6 +120,11 @@ app.get("/home/:username", isLoggedIn,async (req, res) => {
         { _id: 0, username: 1, fullname: 1 }
       );
 
+      //To filter friendlist according to search
+      if (searchQuery !== undefined && searchQuery !== '') {
+        friendDetailsList = friendDetailsList.filter(user => user.fullname.includes(searchQuery));
+      }
+
       res.render("home.ejs",{
         friendDetailsList: friendDetailsList
       });

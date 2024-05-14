@@ -94,8 +94,9 @@ body{
     border-radius: 10px;
     color:rgb(0, 0, 0);
     display:flex;
+    gap:10px;
     align-items: center;
-    justify-content: space-between;
+    justify-content:space-between;
     flex-wrap: wrap;
 }
 .chatbox>h1{
@@ -103,16 +104,16 @@ body{
 }
 .search{
     height:40px;
-    width:70%;
+    width:80%;
     position: relative;
     display: flex;
+    gap:10px;
     align-items: center;
-    
 
 }
 .chatbox>.search>input{
     height:100%;
-    width:100%;
+    width:85%;
     border-radius: 40px;
     border: none;
     padding:0px 25px;
@@ -125,23 +126,24 @@ body{
 }
 .search>i{
     position: absolute;
-    right: 20px;
+    right:75px;
     font-size: large;
     
     
 }
-.chatbox>a{
+.searchBtn{
     text-decoration: none;
     color:white;
     border-radius: 50%;
     width:40px;
     height:40px;
+    border:none;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgb(255, 102, 6);
 }
-.chatbox>a>i{
+.searchBtn>i{
     font-size:24px;
     
 }
@@ -280,6 +282,7 @@ body{
     height:40px;
     font-size: 24px;
     border-radius: 50%;
+    cursor: pointer;
     border:none;
     color: white;
     background-color: #FF6606;

@@ -24,7 +24,8 @@
             <div class="firstinnerdiv">
                 <img src="/images/OpenTalkLogo.png" alt="logo">
                 <div class="optionlist">
-                    <a href="/home" style="color: rgb(255, 102, 6);" class="option"><i class="ri-group-2-line friends"></i></a>
+                    <a href="/home" style="color: rgb(255, 102, 6);" class="option"><i
+                            class="ri-group-2-line friends"></i></a>
                     <a href="/addUser" class="option"><i class="ri-user-add-line adduser"></i></a>
                     <a href="/group" class="option"><i class="ri-team-line group"></i></a>
                     <a href="/global" class="option"><i class="ri-earth-line global"></i></a>
@@ -34,12 +35,13 @@
             <div class="secondinnerdiv">
                 <div class="chatbox">
                     <h1>Chat</h1>
-                    <div class="search">
-                        <input type="text" placeholder="Search user">
-                        <i class="ri-user-search-line"></i>
-                    </div>
 
-                    <a href=""><i class="ri-search-line"></i></a>
+                    <form class="search" action="/home">
+                        <input id="seaarchInput" name="search" type="text" autocomplete="off" placeholder="Search user">
+                        <i class="ri-user-search-line"></i>
+                        <button class="searchBtn" type="submit"><i class="ri-search-line"></i></button>
+                    </form>
+
                 </div>
                 <div class="friendlistbox">
                     <p>FRIENDLIST</p>
@@ -50,12 +52,16 @@
                                 <div class="userdetails">
                                     <div class="profile"></div>
                                     <div class="description">
-                                        <h3><%=friend.fullname%></h3>
-                                        <h6><%=friend.username%></h6>
+                                        <h3>
+                                            <%=friend.fullname%>
+                                        </h3>
+                                        <h6>
+                                            <%=friend.username%>
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
-                        <% } %>
+                            <% } %>
 
                     </div>
                 </div>
