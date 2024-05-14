@@ -151,10 +151,18 @@ li{
 .profile{
     height:40px;
     width:40px;
+    background-color: #ababab;
     border-radius: 50%;
-    background-color: #000000;
-    background-position: center;
-    background-size: cover;
+   position: relative;
+    display: flex;
+    justify-content: center;
+    
+}
+.profile .fa-user{
+    color: #ffffff;
+    font-size: 30px;
+    position: absolute;
+    bottom: 0px;
 }
 .description p{
     font-size: x-small;

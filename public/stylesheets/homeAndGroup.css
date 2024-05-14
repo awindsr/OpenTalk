@@ -179,21 +179,28 @@ body{
 }
 .userdetails{
     width:80%;
-    
-    background-color: rgb(255, 255, 255);
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
     gap:15px;
 }
+
 .profile{
-    height:50px;
-    width:50px;
+    height:40px;
+    width:40px;
+    background-color: #ababab;
     border-radius: 50%;
-    background-position: center;
-    background-size: cover;
-    background-color: #000000;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+}
+.profile .fa-user{
+    color: #ffffff;
+    font-size: 30px;
+    position: absolute;
+    bottom: 0px;
 }
 
 /* //////////////////////////////////// */
@@ -346,4 +353,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.clicked{
+    background-color: #E1E3E8;
 }
