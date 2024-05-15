@@ -48,58 +48,27 @@
                     </i>
                     
                 </div>
-                <h4>1 USER</h4>
+                <h4><%= online %> USER</h4>
             </div>
             <div class="fourthinnerdiv">
                 <p>ONLINE USERS</p>
                 <div class="onlineusers">
+                    <% for (let user of onlineUsersList) {%>
                     <div class="user1">
-                        <div class="profile" style="background-image:url('https://picsum.photos/200') ;"></div>
+                        <div class="profile"></div>
                         <div class="description">
-                            <h3>Steve Smith</h3>
-                            <h6>Lorem ipsum dolor sit </h6>
+                            <h3><%= user.fullname %></h3>
+                            <h6><%= user.username %></h6>
                         </div>
                     </div>
-                    <div class="user1">
-                        <div class="profile" style="background-image:url('https://picsum.photos/200') ;"></div>
-                        <div class="description">
-                            <h3>Steve Smith</h3>
-                            <h6>Lorem ipsum dolor sit </h6>
-                        </div>
-                    </div>
-                    <div class="user1">
-                        <div class="profile" style="background-image:url('https://picsum.photos/200') ;"></div>
-                        <div class="description">
-                            <h3>Steve Smith</h3>
-                            <h6>Lorem ipsum dolor sit </h6>
-                        </div>
-                    </div>
-                    <div class="user1">
-                        <div class="profile" style="background-image:url('https://picsum.photos/200') ;"></div>
-                        <div class="description">
-                            <h3>Steve Smith</h3>
-                            <h6>Lorem ipsum dolor sit </h6>
-                        </div>
-                    </div>
-                    <div class="user1">
-                        <div class="profile" style="background-image:url('https://picsum.photos/200') ;"></div>
-                        <div class="description">
-                            <h3>Steve Smith</h3>
-                            <h6>Lorem ipsum dolor sit </h6>
-                        </div>
-                    </div>
-                    <div class="user1">
-                        <div class="profile" style="background-image:url('https://picsum.photos/200') ;"></div>
-                        <div class="description">
-                            <h3>Steve Smith</h3>
-                            <h6>Lorem ipsum dolor sit </h6>
-                        </div>
-                    </div>
+                    <% } %>
                 </div>
             </div>
 
         </div>
     </div>
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/socket.js"></script>
 <script src="/javascripts/logout.js"></script>
 </html>

@@ -14,6 +14,7 @@ const io = new Server(server, {
   connectionStateRecovery: {},
 });
 const PORT = 3000;
+let onlineUsers = [];
 
 app.set("view engine", "ejs");
 
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(flash());
+
 
 ////////////////////////////////////////////////////////////
 passport.use(new localStrategy(user.authenticate()));
@@ -80,11 +82,18 @@ app.post("/login", passport.authenticate("local", {
   function (req, res) { }
 );
 
-app.get("/logout", (req, res, next) => {
+app.get("/logout",isLoggedIn,(req,res)=>{
+  const username = req.session.passport.user;
+  res.redirect("/logout/"+username);
+});
+
+app.get("/logout/:username",isLoggedIn,(req, res, next) => {
+  
   req.logout((err) => {
     if (err) {
       return next(err);
     }
+    onlineUsers.splice(onlineUsers.indexOf(req.params.username),1);
     res.redirect("/login");
   });
 });
@@ -254,38 +263,63 @@ app.get("/global", isLoggedIn, (req, res) => {
   res.redirect("/global/" + username);
 });
 
-app.get("/global/:username", isLoggedIn, (req, res) => {
-  if (req.params.username !== req.session.passport.user) {
-    res.redirect("/login");
-  } else {
-    res.render("global.ejs");
+app.get("/global/:username", isLoggedIn,async (req, res) => {
+  try{
+    if (req.params.username !== req.session.passport.user) {
+      res.redirect("/login");
+    }
+    else {
+      //All online users details
+      let onlineUsersList = await user.find(
+        { username: { $in: onlineUsers } },
+        { _id: 0, username: 1, fullname: 1 }
+      );
+
+      res.render("global.ejs",{
+        online : onlineUsers.length,
+        onlineUsersList : onlineUsersList
+      });
+    }
   }
+  catch(err){
+    console.log(err);
+  }
+  
 });
 
 function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) return next();
+  if (req.isAuthenticated()) {
+    if (!onlineUsers.includes(req.session.passport.user)) {
+      onlineUsers.push( req.session.passport.user);
+    }
+    return next();
+  }
   res.redirect("/login");
 }
 
-//socket io code//////////////////////////////////////////
+//////////////////////////////////socket io code//////////////////////////////////////////
 
 io.on("connection", (socket) => {
-  console.log("a user connected :" + socket.id);
+
+  console.log("Online :"+ onlineUsers);
   socket.on("disconnect", () => {
-    socket.leave("some room");
-    console.log("user disconnected :" + socket.id);
+
+    // socket.leave("some room");
+    console.log("Online :"+ onlineUsers);
   });
 });
-//             Global Chat
-// io.on('connection', (socket) => {
-//     socket.on('chat message', (msg) => {
-//       socket.broadcast.emit('chat message', msg);
-//     });
-//   });
+
+/**************************************************  Global Chat  **********************************************************************************/
+io.on('connection', (socket) => {
+    socket.on('chat message', (msg) => {
+      socket.broadcast.emit('chat message', msg);
+    });
+  });
+  
 //////////////////////////////////////////////
 
 io.on("connection", (socket) => {
-  socket.join("some room");
+  // socket.join("some room");
 
   socket.on("chat message", (msg) => {
     // Broadcast to all connected clients in the room except the sender
