@@ -49,6 +49,7 @@ body{
     gap:20px;
     min-height: 195px;
 }
+
 .option{
     color:#ffffff;
     font-size:24px;
@@ -87,9 +88,8 @@ body{
 }
 .chatbox{
     padding:0px 10px;
-    height:80px;
+    min-height:70px;
     width:100%;
-    
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     color:rgb(0, 0, 0);
@@ -97,7 +97,7 @@ body{
     gap:10px;
     align-items: center;
     justify-content:space-between;
-    flex-wrap: wrap;
+
 }
 .chatbox>h1{
     font-size: 30px;
@@ -135,7 +135,7 @@ body{
     text-decoration: none;
     color:white;
     border-radius: 50%;
-    width:40px;
+    min-width:40px;
     height:40px;
     border:none;
     display: flex;
@@ -153,7 +153,8 @@ body{
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     padding:20px ;
-    
+    padding-right: 10x;
+    overflow: hidden;
 }
 .friendlistbox>p{
     color:grey;
@@ -164,12 +165,13 @@ body{
     width:100%;
     background-color: rgb(255, 255, 255);
     height: 98%;
+    padding-right: 5px;
     overflow: auto;
 }
 .user1{
     width:100%; 
     background-color: rgb(255, 255, 255);
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid rgb(206, 206, 206);
     padding:10px 10px;
     display: flex;
     padding-left: 20px;
@@ -232,7 +234,7 @@ body{
 .thirdinnerdiv{
     padding:0px 20px;
     width:100%;
-    height:80px;
+    min-height:70px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     color:rgb(0, 0, 0);
@@ -314,7 +316,7 @@ body{
     width:100%;
     display: flex;
     flex-direction: column;
-    height:470px;
+    height:100%;
     overflow-y: auto;
     overflow-x: hidden;
     overflow-wrap: normal;
@@ -359,8 +361,7 @@ body{
     max-width: 100%;
 }
 .noUserFoundImage{
-    width: 366.6px;
-    height: 340px;
+    width: 60%;
     object-fit: cover;
 }
 .center{
@@ -373,4 +374,21 @@ body{
 }
 .hide{
     display: none;
+}
+
+
+
+
+.friendlist::-webkit-scrollbar {
+    width: 5px; 
+ }
+
+.friendlist::-webkit-scrollbar-track {
+  background-color:#E2E4E9;
+  border-radius:30px ;
+}
+
+.friendlist::-webkit-scrollbar-thumb {
+  background: #FF6606;
+  border-radius:30px;
 }
