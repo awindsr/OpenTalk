@@ -30,7 +30,7 @@ app.use(
   expressSession({
     resave: false,
     saveUninitialized: false,
-    secret: "hey",
+    secret: "hey"
   })
 );
 
