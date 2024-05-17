@@ -7,6 +7,7 @@ import expressSession from "express-session";
 import flash from "connect-flash";
 import { Server } from "socket.io";
 import { createServer } from "node:http";
+import globalChat from "./models/global.js";
 
 const app = express();
 const server = createServer(app);
@@ -78,22 +79,20 @@ app.post("/login", passport.authenticate("local", {
   successRedirect: "/home",
   failureRedirect: "/login",
   failureFlash: true,
-}),
-  function (req, res) { }
-);
+}));
 
-app.get("/logout",isLoggedIn,(req,res)=>{
+app.get("/logout", isLoggedIn, (req, res) => {
   const username = req.session.passport.user;
-  res.redirect("/logout/"+username);
+  res.redirect("/logout/" + username);
 });
 
-app.get("/logout/:username",isLoggedIn,(req, res, next) => {
-  
+app.get("/logout/:username", isLoggedIn, (req, res, next) => {
+
   req.logout((err) => {
     if (err) {
       return next(err);
     }
-    onlineUsers.splice(onlineUsers.indexOf(req.params.username),1);
+    onlineUsers.splice(onlineUsers.indexOf(req.params.username), 1);
     res.redirect("/login");
   });
 });
@@ -124,8 +123,8 @@ app.get("/home", isLoggedIn, (req, res) => {
   res.redirect(redirectUrl);
 });
 
-app.get("/home/:username", isLoggedIn,async (req, res) => {
-  try{
+app.get("/home/:username", isLoggedIn, async (req, res) => {
+  try {
     const searchQuery = req.query.search;
 
     if (req.params.username !== req.session.passport.user) {
@@ -137,11 +136,11 @@ app.get("/home/:username", isLoggedIn,async (req, res) => {
         { username: req.params.username },
         { _id: 0, friends: 1 }
       );
-      let friendsList=friendsListList[0].friends;
+      let friendsList = friendsListList[0].friends;
 
       //Details of each friend of client
       let friendDetailsList = await user.find(
-        { username:  { $in: friendsList } },
+        { username: { $in: friendsList } },
         { _id: 0, username: 1, fullname: 1 }
       );
 
@@ -150,15 +149,15 @@ app.get("/home/:username", isLoggedIn,async (req, res) => {
         friendDetailsList = friendDetailsList.filter(user => user.fullname.includes(searchQuery));
       }
 
-      res.render("home.ejs",{
+      res.render("home.ejs", {
         friendDetailsList: friendDetailsList
       });
     }
   }
-  catch(err){
+  catch (err) {
     console.log(err);
   }
-  
+
 });
 
 /*************************************************************************************************************************************/
@@ -194,7 +193,7 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
 
     if (req.params.username !== req.session.passport.user) {
       return res.redirect("/login");
-    } 
+    }
     else {
       //All existing users details except the client
       let existingUserList = await user.find(
@@ -263,8 +262,8 @@ app.get("/global", isLoggedIn, (req, res) => {
   res.redirect("/global/" + username);
 });
 
-app.get("/global/:username", isLoggedIn,async (req, res) => {
-  try{
+app.get("/global/:username", isLoggedIn, async (req, res) => {
+  try {
     if (req.params.username !== req.session.passport.user) {
       res.redirect("/login");
     }
@@ -275,22 +274,23 @@ app.get("/global/:username", isLoggedIn,async (req, res) => {
         { _id: 0, username: 1, fullname: 1 }
       );
 
-      res.render("global.ejs",{
-        online : onlineUsers.length,
-        onlineUsersList : onlineUsersList
+      res.render("global.ejs", {
+        online: onlineUsers.length,
+        onlineUsersList: onlineUsersList,
+        username: req.session.passport.user
       });
     }
   }
-  catch(err){
+  catch (err) {
     console.log(err);
   }
-  
+
 });
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     if (!onlineUsers.includes(req.session.passport.user)) {
-      onlineUsers.push( req.session.passport.user);
+      onlineUsers.push(req.session.passport.user);
     }
     return next();
   }
@@ -300,34 +300,59 @@ function isLoggedIn(req, res, next) {
 //////////////////////////////////socket io code//////////////////////////////////////////
 
 io.on("connection", (socket) => {
+  console.log("Online :" + onlineUsers);
 
-  console.log("Online :"+ onlineUsers);
   socket.on("disconnect", () => {
-
     // socket.leave("some room");
-    console.log("Online :"+ onlineUsers);
+    console.log("Online :" + onlineUsers);
   });
 });
 
 /**************************************************  Global Chat  **********************************************************************************/
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-      socket.broadcast.emit('chat message', msg);
-    });
+io.on('connection',async (socket) => {
+  socket.on('Global Chat', async (msg, username) => {
+    let savedMessage;
+    try {
+      const globalchat = new globalChat({
+        username: username,
+        text: msg
+      });
+      await globalchat.save();
+
+    } catch (err) {
+      console.error('Error saving message to database:', err);
+    }
+    socket.broadcast.emit('Global Chat', msg, username);
   });
-  
+
+  if (!socket.recovered) {
+    // If the connection state recovery was not successful
+    try {
+      // Fetch messages from MongoDB that were created after the serverOffset timestamp
+      const messages = await globalChat.find({ timestamp: { $gt: 0 } });
+
+      // Emit each message to the client
+      messages.forEach(message => {
+        socket.emit('Recover messages', message.text,message.username , message._id);
+      });
+    } catch (e) {
+      console.error('Error fetching messages from database:', e);
+    }
+  }
+});
+
 //////////////////////////////////////////////
 
-io.on("connection", (socket) => {
-  // socket.join("some room");
+// io.on("connection", (socket) => {
+//   // socket.join("some room");
 
-  socket.on("chat message", (msg) => {
-    // Broadcast to all connected clients in the room except the sender
-    socket.to("some room").emit("chat message", msg);
+//   socket.on("chat message", (msg) => {
+//     // Broadcast to all connected clients in the room except the sender
+//     socket.to("some room").emit("chat message", msg);
 
-  });
-  // Join the room named 'some room'
-});
+//   });
+//   // Join the room named 'some room'
+// });
 
 //////////////////////////////////////////////////////////
 
