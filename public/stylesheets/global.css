@@ -20,7 +20,7 @@ body{
 }
 .firstdiv{
     height:100%;
-    width:90%;
+    width:88%;
     border-radius: 10px;
     background-color:#E2E4E9;
     display: flex;
@@ -73,7 +73,7 @@ body{
 }
 .secondinnerdiv{
     height:100%;
-    width:100%;
+    width:calc(100% - 85px);
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     display: flex;
@@ -133,7 +133,7 @@ body{
 
 .seconddiv{
     height:100%;
-    width:220px;
+    width:12%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -237,17 +237,24 @@ body{
     display: flex;
     justify-content:flex-start ;
     overflow-wrap: break-word;
-    white-space: pre-wrap;
-
 }
+
 .mymessage>span{
-    padding:4px 10px;
+    padding:5px 10px;
     background-color: #FF6606;
     border-radius: 20px;
     border-top-left-radius:0px;
     color:white;
     font-size: 20px;
-    max-width: 100%;
+    max-width: 90%;
+    line-height: 19px;
+    white-space: pre-wrap;
+}
+.mymessage>span>.mynametag{
+    font-size: 12px;
+    font-family:'Segoe UI';
+    font-weight: 500;
+    color:black;
 }
 .othermessage{
 
@@ -255,15 +262,42 @@ body{
     display: flex;
     justify-content:flex-end;
     overflow-wrap: break-word;
-    white-space: pre-wrap;
-    
 }
 .othermessage>span{
-    padding:4px 10px;
+    padding:5px 10px;
     background-color: #000000;
     border-radius: 20px;
     border-top-right-radius:0px;
     color:white;
+     display: flex;/*
+    align-items: flex-end;*/
+    flex-direction: column; 
     font-size: 20px;
-    max-width: 100%;
+    max-width: 90%;
+    line-height: 19px;
+    white-space: pre-wrap;
+}
+    
+
+.othermessage>span>.othernametag{
+    font-size: 12px;
+    font-family:'Segoe UI';
+    font-weight: 500;
+    color:#FF6606;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#globalMessagediv::-webkit-scrollbar {
+    width: 5px; 
+ }
+
+#globalMessagediv::-webkit-scrollbar-track {
+  background-color:#00000000;
+  border-radius:30px ;
+}
+
+#globalMessagediv::-webkit-scrollbar-thumb {
+  background: #FF6606;
+  border-radius:30px;
 }
