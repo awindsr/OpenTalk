@@ -32,7 +32,7 @@ form.addEventListener("submit", (e) => {
     // Append the span to the main container div
     item.appendChild(innerItem);
     messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
+    messages.scrollTo(0, messages.scrollHeight);
     ////////////////////////////////////////////
     socket.emit("Global Chat", input.value, username);
     input.value = "";
@@ -59,7 +59,7 @@ socket.on("Global Chat", (msg, username) => {
   // Append the span to the main container div
   item.appendChild(innerItem);
   messages.appendChild(item);
-  window.scrollTo(0, document.body.scrollHeight);
+  messages.scrollTo(0, messages.scrollHeight);
 });
 
 // Handle recovered messages
@@ -77,6 +77,7 @@ socket.on("Recover messages", (msg, username) => {
     innerItem.appendChild(messageText);
     item.appendChild(innerItem);
 
+
   } else {
 
     item.classList.add("othermessage");
@@ -92,6 +93,6 @@ socket.on("Recover messages", (msg, username) => {
   }
 
   messages.appendChild(item);
-  window.scrollTo(0, document.body.scrollHeight);
+  messages.scrollTo(0, messages.scrollHeight);
 });
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
