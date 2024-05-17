@@ -63,7 +63,7 @@ socket.on("Global Chat", (msg, username) => {
 });
 
 // Handle recovered messages
-socket.on("Recover messages", (msg, username) => {
+socket.on("Recover global messages", (msg, username) => {
   const item = document.createElement("div");
   if (form.getAttribute("username") === username) {
 
@@ -89,7 +89,7 @@ socket.on("Recover messages", (msg, username) => {
     const messageText = document.createTextNode(msg);
     innerItem.appendChild(messageText);
     item.appendChild(innerItem);
-    
+
   }
 
   messages.appendChild(item);

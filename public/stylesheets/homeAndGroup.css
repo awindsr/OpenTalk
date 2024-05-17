@@ -278,7 +278,7 @@ body{
 }
 
 
-#form{
+#homeForm{
     width:100%;
     height:40px;
     background-color:#E1E3E8;
@@ -287,7 +287,7 @@ body{
     border-radius: 20px;
     align-items: center;
 }
-#form>#input{
+#homeForm>#homeInput{
     width:90%;
     height:40px;
     background-color: transparent;
@@ -300,7 +300,7 @@ body{
     overflow: hidden;
 }
 
-#form>button{
+#homeForm>button{
     width:40px;
     height:40px;
     font-size: 24px;
@@ -311,7 +311,7 @@ body{
     background-color: #FF6606;
 }
 
-#messagediv{
+#homeMessagediv{
     padding:10px 10px;
     width:100%;
     display: flex;
@@ -324,23 +324,30 @@ body{
     background-color:#E1E3E8;
     border-radius: 10px;
     gap:2px;
+    scroll-behavior: smooth;
 }
 .mymessage{
     width:100%;
     display: flex;
     justify-content:flex-start ;
     overflow-wrap: break-word;
-    white-space: pre-wrap;
-
 }
 .mymessage>span{
-    padding:4px 10px;
+    padding:5px 10px;
     background-color: #FF6606;
     border-radius: 20px;
     border-top-left-radius:0px;
     color:white;
     font-size: 20px;
-    max-width: 100%;
+    max-width: 90%;
+    line-height: 19px;
+    white-space: pre-wrap;
+}
+.mymessage>span>.mynametag{
+    font-size: 12px;
+    font-family:'Segoe UI';
+    font-weight: 500;
+    color:black;
 }
 .othermessage{
 
@@ -348,17 +355,28 @@ body{
     display: flex;
     justify-content:flex-end;
     overflow-wrap: break-word;
-    white-space: pre-wrap;
     
 }
 .othermessage>span{
-    padding:4px 10px;
+    padding:5px 10px;
     background-color: #000000;
     border-radius: 20px;
     border-top-right-radius:0px;
     color:white;
+    display: flex;
+    flex-direction: column; 
     font-size: 20px;
-    max-width: 100%;
+    max-width: 90%;
+    line-height: 19px;
+    white-space: pre-wrap;
+}
+.othermessage>span>.othernametag{
+    font-size: 12px;
+    font-family:'Segoe UI';
+    font-weight: 500;
+    color:#FF6606;
+    display: flex;
+    justify-content: flex-end;
 }
 .noUserFoundImage{
     width: 60%;

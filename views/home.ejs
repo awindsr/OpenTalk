@@ -42,7 +42,7 @@
                 <div class="chatbox">
                     <h1>Chat</h1>
 
-                    <form class="search" action="/home">
+                    <form myUsername="<%=username%>" class="search" action="/home">
                         <input id="seaarchInput" name="search" type="text" autocomplete="off" placeholder="Search user">
                         <i class="ri-user-search-line"></i>
                         <button class="searchBtn" type="submit"><i class="ri-search-line"></i></button>
@@ -91,11 +91,11 @@
 
             </div>
             <div class="fourthinnerdiv">
-                <div id="messagediv">
+                <div id="homeMessagediv">
                 </div>
 
-                <form id="form" action="">
-                    <textarea id="input" placeholder="Enter your Message"></textarea>
+                <form id="homeForm" action="">
+                    <textarea id="homeInput" placeholder="Enter your Message"></textarea>
                     <button type="submit"><i class="ri-arrow-right-up-line"></i></button>
                 </form>
             </div>
@@ -104,7 +104,6 @@
     </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
-<script src="/javascripts/socket.js"></script>
 <script src="/javascripts/logout.js"></script>
 <script src="/javascripts/home.js"></script>
 

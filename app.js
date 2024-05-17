@@ -1,6 +1,6 @@
 import express from "express";
 import user from "./models/user.js";
-import { userSort } from './public/javascripts/functions.js';
+import { userSort, createRoomName } from './public/javascripts/functions.js';
 import passport from "passport";
 import localStrategy from "passport-local";
 import expressSession from "express-session";
@@ -8,6 +8,7 @@ import flash from "connect-flash";
 import { Server } from "socket.io";
 import { createServer } from "node:http";
 import globalChat from "./models/global.js";
+import homeChat from "./models/home.js";
 
 const app = express();
 const server = createServer(app);
@@ -150,7 +151,8 @@ app.get("/home/:username", isLoggedIn, async (req, res) => {
       }
 
       res.render("home.ejs", {
-        friendDetailsList: friendDetailsList
+        friendDetailsList: friendDetailsList,
+        username: req.session.passport.user
       });
     }
   }
@@ -297,21 +299,58 @@ function isLoggedIn(req, res, next) {
   res.redirect("/login");
 }
 
-//////////////////////////////////socket io code//////////////////////////////////////////
+/*************************************************   Home Chat   **********************************************************************************/
+io.on('connection', async (socket) => {
 
-io.on("connection", (socket) => {
-  console.log("Online :" + onlineUsers);
+  let roomName;
 
-  socket.on("disconnect", () => {
-    // socket.leave("some room");
-    console.log("Online :" + onlineUsers);
+  // Leave all rooms
+  socket.on('leave all rooms',async () => {
+    const rooms = Object.keys(socket.rooms);
+    rooms.forEach(room => {
+      if (room !== socket.id) { // Exclude the default room (socket.id)
+        socket.leave(room);
+      }
+    });
   });
-});
 
+  socket.on("Join Home Room", async (myUsername, frdUsername) => {
+    roomName = createRoomName(myUsername, frdUsername);
+    socket.join(roomName);
+    console.log(roomName);
+
+
+    try {
+      const messages = await homeChat.find({ timestamp: { $gt: 0 }, room: roomName });
+      messages.forEach(message => {
+        socket.emit('Recover home messages', message.text, message.username);
+      });
+    } catch (e) {
+      console.error('Error fetching messages from database:', e);
+    }
+
+  });
+
+  socket.on("Home Chat", async (msg, username) => {
+    try {
+
+      const homechat = new homeChat({
+        room: roomName,
+        username: username,
+        text: msg
+      });
+      await homechat.save();
+
+    } catch (err) {
+      console.error('Error saving message to database:', err);
+    }
+    socket.broadcast.to(roomName).emit('Home Chat', msg, username);
+  });
+
+});
 /**************************************************  Global Chat  **********************************************************************************/
-io.on('connection',async (socket) => {
+io.on('connection', async (socket) => {
   socket.on('Global Chat', async (msg, username) => {
-    let savedMessage;
     try {
       const globalchat = new globalChat({
         username: username,
@@ -326,14 +365,10 @@ io.on('connection',async (socket) => {
   });
 
   if (!socket.recovered) {
-    // If the connection state recovery was not successful
     try {
-      // Fetch messages from MongoDB that were created after the serverOffset timestamp
       const messages = await globalChat.find({ timestamp: { $gt: 0 } });
-
-      // Emit each message to the client
       messages.forEach(message => {
-        socket.emit('Recover messages', message.text,message.username , message._id);
+        socket.emit('Recover global messages', message.text, message.username, message._id);
       });
     } catch (e) {
       console.error('Error fetching messages from database:', e);

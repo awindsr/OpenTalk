@@ -21,6 +21,7 @@
         rel="stylesheet">
 </head>
 <body>
+    <input type="file" id="imageUploadInput" accept="image/png, image/jpeg" style="display: none;">  <!--for storing image-->
     <div class="logoutContainer">
         <h1>Log out <i class="ri-logout-box-r-line"></i></h1>
         <p>Are you sure you want to log out ?</p>
@@ -52,7 +53,7 @@
                 </div>
                 <div class="lineDiv">
                     <div class="profileImageCircle">
-                        <div class="editBtn"><i class="ri-pencil-fill"></i></div>  
+                        <button id="uploadButton" class="editBtn"><i class="ri-pencil-fill"></i></button>  
                     </div>
                 </div>
                 <div class="detailsDiv">
@@ -69,5 +70,6 @@
             </div>
     </div>
     <script src="/javascripts/logout.js"></script>
+    <script src="/javascripts/profile.js"></script>
 </body>
 </html>

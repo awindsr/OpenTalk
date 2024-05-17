@@ -28,4 +28,14 @@ function userSort(friendsList, existingUserList) {
 
 /*************************************************************************************************************************************/
 
-export { userSort };
+//Function to create room name for home chat
+
+function createRoomName(username1, username2) {
+    if (username1 < username2) {
+        return `${username1}@${username2}`;
+    } else {
+        return `${username2}@${username1}`;
+    }
+}
+
+export { userSort ,createRoomName};
