@@ -9,6 +9,9 @@ import { Server } from "socket.io";
 import { createServer } from "node:http";
 import globalChat from "./models/global.js";
 import homeChat from "./models/home.js";
+import multer from 'multer';
+import { v4 as uuidv4 } from 'uuid';
+import path from 'path';
 
 const app = express();
 const server = createServer(app);
@@ -41,7 +44,23 @@ app.use(passport.session());
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 
-////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, './public/images/uploads');
+  },
+  filename: function (req, file, cb) {
+    const uniquename = uuidv4();
+    cb(null, uniquename+path.extname(file.originalname));
+  }
+
+});
+
+const upload = multer({ storage });
+
+//////////////////////////////////////////////////////////////////////
+
 app.get("/", (req, res) => {
   res.render("start.ejs");
 });
@@ -104,12 +123,38 @@ app.get("/profile", isLoggedIn, (req, res) => {
   res.redirect("/profile/" + username);
 });
 
-app.get("/profile/:username", isLoggedIn, (req, res) => {
-  if (req.params.username !== req.session.passport.user) {
-    res.redirect("/login");
-  } else {
-    res.render("profile.ejs");
+app.get("/profile/:username", isLoggedIn,async (req, res) => {
+  try{
+    if (req.params.username !== req.session.passport.user) {
+      res.redirect("/login");
+    } else {
+      const userDetails = await user.findOne({username: req.session.passport.user})
+      let profileImage
+      if (userDetails.profileImage===undefined){
+        profileImage = 'noProfileImage.jpeg';
+      }else{
+        profileImage = userDetails.profileImage;
+      }
+      res.render("profile.ejs",{
+        profileImage : profileImage,
+        username :userDetails.username,
+        fullname :userDetails.fullname,
+        noOfFrds : userDetails.friends.length
+      });
+    }
   }
+  catch(err){
+    console.log(err);
+  }
+  
+});
+
+app.post('/profileupload',isLoggedIn, upload.single("image") ,async (req, res, next)=> {
+  const userDetails = await user.findOne({username: req.session.passport.user})
+  userDetails.profileImage = req.file.filename;
+  await userDetails.save();
+  res.redirect("/profile");
+  
 });
 
 /**************************************************************************************************************************************/
@@ -160,21 +205,6 @@ app.get("/home/:username", isLoggedIn, async (req, res) => {
     console.log(err);
   }
 
-});
-
-/*************************************************************************************************************************************/
-
-app.get("/group", isLoggedIn, (req, res) => {
-  const username = req.session.passport.user;
-  res.redirect("/group/" + username);
-});
-
-app.get("/group/:username", isLoggedIn, (req, res) => {
-  if (req.params.username !== req.session.passport.user) {
-    res.redirect("/login");
-  } else {
-    res.render("group.ejs");
-  }
 });
 
 /**************************************************************************************************************************************/

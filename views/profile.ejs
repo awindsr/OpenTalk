@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,8 +21,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
-    <input type="file" id="imageUploadInput" accept="image/png, image/jpeg" style="display: none;">  <!--for storing image-->
+    <form id="inputForm" method="post" action="/profileupload" enctype="multipart/form-data">
+        <input type="file" name="image" id="imageUploadInput" accept="image/png, image/jpeg" style="display: none;">
+        <!--for storing image-->
+    </form>
     <div class="logoutContainer">
         <h1>Log out <i class="ri-logout-box-r-line"></i></h1>
         <p>Are you sure you want to log out ?</p>
@@ -34,11 +39,10 @@
             <div class="firstinnerdiv">
                 <img src="/images/OpenTalkLogo.png" alt="logo">
                 <div class="optionlist">
-                    <a href="/profile" class="option" style="color: rgb(255, 102, 6);"><i class="ri-map-pin-user-line"></i></a>
-                    <a href="/home"  class="option"><i
-                            class="ri-group-2-line friends"></i></a>
+                    <a href="/profile" class="option" style="color: rgb(255, 102, 6);"><i
+                            class="ri-map-pin-user-line"></i></a>
+                    <a href="/home" class="option"><i class="ri-group-2-line friends"></i></a>
                     <a href="/addUser" class="option"><i class="ri-user-add-line adduser"></i></a>
-                    <a href="/group" class="option"><i class="ri-team-line group"></i></a>
                     <a href="/global" class="option"><i class="ri-earth-line global"></i></a>
                 </div>
                 <button class="logout"><i class="ri-logout-box-line"></i></button>
@@ -48,28 +52,32 @@
                     <div class="editImgBtn">
                         <i class="ri-pencil-fill"></i>
                         <p>Edit</p>
-                        
+
                     </div>
                 </div>
                 <div class="lineDiv">
-                    <div class="profileImageCircle">
-                        <button id="uploadButton" class="editBtn"><i class="ri-pencil-fill"></i></button>  
+                    <div class="profileImageCircle" >
+                        <img src="/images/uploads/<%=profileImage%>">
+                        <button id="uploadButton" class="editBtn"><i class="ri-pencil-fill"></i></button>
                     </div>
                 </div>
                 <div class="detailsDiv">
                     <div class="userAbout">
                         <div class="userName">
-                            <h2>Jose Mouringho</h2>
-                            <div class="friendTag">4 Friends</div>
+                            <h2><%=fullname%></h2>
+                            <div class="friendTag"><%=noOfFrds%> Friends</div>
                         </div>
-                        <h4>@jose Mourigho</h4>
-                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A esse nesciunt quasi debitis praesentium dicta mollitia incidunt reprehenderit quia, quibusdam vel. Unde ab non in pariatur ex aliquid atque alias!</p>
+                        <h4>@<%=username%></h4>
+                        <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A esse nesciunt
+                            quasi debitis praesentium dicta mollitia incidunt reprehenderit quia, quibusdam vel. Unde ab
+                            non in pariatur ex aliquid atque alias!</p>
                     </div>
                 </div>
 
             </div>
-    </div>
-    <script src="/javascripts/logout.js"></script>
-    <script src="/javascripts/profile.js"></script>
+        </div>
+        <script src="/javascripts/logout.js"></script>
+        <script src="/javascripts/profile.js"></script>
 </body>
+
 </html>
