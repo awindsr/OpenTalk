@@ -20,7 +20,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      friends: [String]
+      friends: [String],
+      
+      description : {
+        type: String,
+        default : 'Welcome To My Profile'
+      }
 });
 
 userSchema.plugin(plm);
