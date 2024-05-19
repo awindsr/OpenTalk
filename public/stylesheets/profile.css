@@ -80,27 +80,36 @@ body{
     background-color: #FF6606;
     border-radius: 10px;
     padding:10px;
+    z-index: 0;
 }
 .backgroundImage{
-    width:100%;
+    width: 100%;
     padding: 5px;
     background: url(../images/profilebg.jpg);
     background-position: center;
     background-size: contain;
     display: flex;
-    justify-content: flex-end;
-    align-items:baseline;
-    height:200px;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 8vw;
     background-color: rgb(63, 47, 47);
     border-radius: 10px;
+    font-family: 'NOTO SANS';
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
+    /* font-weight: 500; */
+    color: rgb(0 0 0 / 29%);
+    letter-spacing: -2px;
+    font-weight: 800;
 }
 .editImgBtn{
     width: 60px;
     display: flex;
     justify-content: center;
     gap:5px;
+    position:absolute;
+    right: 10px;
     align-items: center;
     padding:3px 5px;
     background-color: white;
@@ -150,6 +159,7 @@ body{
 }
 
 .detailsDiv{
+    position: relative;
     width:100%;
     height:calc(100% - 200px);
     background-color: rgb(255, 255, 255);
@@ -160,6 +170,7 @@ body{
     display: flex;
     justify-content: center;
     align-items:flex-start;
+    z-index: -1;
 }
 .userAbout{
     margin-top: 120px;
