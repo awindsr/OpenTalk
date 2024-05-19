@@ -177,6 +177,7 @@ body{
     display: flex;
     flex-direction: column;
     gap:10px;
+    width: 100%;
 }
 .userName{
     display: flex;
@@ -192,4 +193,6 @@ body{
 .description{
     margin-top: 20px;
     font-size: large;
+    width: 100%;
+    border: none;
 }
