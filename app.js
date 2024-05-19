@@ -129,14 +129,8 @@ app.get("/profile/:username", isLoggedIn,async (req, res) => {
       res.redirect("/login");
     } else {
       const userDetails = await user.findOne({username: req.session.passport.user})
-      let profileImage
-      if (userDetails.profileImage===undefined){
-        profileImage = 'noProfileImage.jpeg';
-      }else{
-        profileImage = userDetails.profileImage;
-      }
       res.render("profile.ejs",{
-        profileImage : profileImage,
+        profileImage : userDetails.profileImage,
         username :userDetails.username,
         fullname :userDetails.fullname,
         noOfFrds : userDetails.friends.length
@@ -187,7 +181,7 @@ app.get("/home/:username", isLoggedIn, async (req, res) => {
       //Details of each friend of client
       let friendDetailsList = await user.find(
         { username: { $in: friendsList } },
-        { _id: 0, username: 1, fullname: 1 }
+        { _id: 0, username: 1, fullname: 1 ,profileImage: 1}
       );
 
       //To filter friendlist according to search
@@ -230,7 +224,7 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
       //All existing users details except the client
       let existingUserList = await user.find(
         { username: { $ne: req.params.username } },
-        { _id: 0, username: 1, fullname: 1 }
+        { _id: 0, username: 1, fullname: 1 ,profileImage: 1}
       );
 
       //Usernames of Friends of the client
@@ -303,7 +297,7 @@ app.get("/global/:username", isLoggedIn, async (req, res) => {
       //All online users details
       let onlineUsersList = await user.find(
         { username: { $in: onlineUsers } },
-        { _id: 0, username: 1, fullname: 1 }
+        { _id: 0, username: 1, fullname: 1 ,profileImage: 1}
       );
 
       res.render("global.ejs", {

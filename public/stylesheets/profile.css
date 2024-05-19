@@ -126,6 +126,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #B1B1B1;
 }
 .profileImageCircle img{
     width: 100%;

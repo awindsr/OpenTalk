@@ -8,11 +8,13 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
       },
-      profileImage: String,
+      profileImage: {
+        type: String,
+        default : 'noProfileImage.png'
+      },
       password: {
         type: String,
-        required:true,
-        
+        required:true
       },
       fullname: {
         type: String,

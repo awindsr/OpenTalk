@@ -55,7 +55,9 @@
                         <% for (let friend of friendDetailsList){%>
                             <div class="user1">
                                 <div class="userdetails">
-                                    <div class="profile"><i class="fa-solid fa-user"></i></div>
+                                    <div class="profile" >
+                                        <img src="/images/uploads/<%=friend.profileImage%>">
+                                    </div>
                                     <div class="description">
                                         <h3>
                                             <%=friend.fullname%>

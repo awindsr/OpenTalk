@@ -55,7 +55,9 @@
                 <div class="onlineusers">
                     <% for (let user of onlineUsersList) {%>
                     <div class="user1">
-                        <div class="profile"></div>
+                        <div class="profile" >
+                            <img src="/images/uploads/<%=user.profileImage%>">
+                        </div>
                         <div class="description">
                             <h3><%= user.fullname %></h3>
                             <h6><%= user.username %></h6>

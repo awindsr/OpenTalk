@@ -56,7 +56,9 @@
                 <ul class="existingUserGroup">
                     <% for (let user of existingUsers){%>
                         <li class="existingUser">
-                            <div class="profile"><i class="fa-solid fa-user"></i></div>
+                            <div class="profile" >
+                                <img src="/images/uploads/<%=user.profileImage%>">
+                            </div>
                             <div class="description">
                                 <h5>
                                     <%= user.fullname%>
