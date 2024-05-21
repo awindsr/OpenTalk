@@ -59,10 +59,10 @@
                 </div>
                 <div class="detailsDiv">
                     <div class="editImgBtn">
-                        <i class="ri-pencil-fill"></i>
-                        <p>Edit</p>
-
+                        <p class="edit show" ><i class="ri-pencil-fill"></i> Edit</p>
+                        <p class="done hide" ><i style="color: green;" class="fa-solid fa-check"></i> Done</p>
                     </div>
+
                     <div class="userAbout">
                         <div class="userName">
                             <h2>
@@ -74,7 +74,7 @@
                         </div>
                         <h4>@<%=username%></h4>
 
-                        <textarea class="description" placeholder="Enter your Description"></textarea>
+                        <textarea rows="7" text="<%=description%>" class="description" placeholder="Enter your Description" disabled></textarea>
                     </div>
                 </div>
 

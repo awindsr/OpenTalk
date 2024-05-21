@@ -133,7 +133,8 @@ app.get("/profile/:username", isLoggedIn,async (req, res) => {
         profileImage : userDetails.profileImage,
         username :userDetails.username,
         fullname :userDetails.fullname,
-        noOfFrds : userDetails.friends.length
+        noOfFrds : userDetails.friends.length,
+        description : userDetails.description
       });
     }
   }
