@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
         required: true
       },
       friends: [String],
+      reqSend: [String],
+      reqReceived: [String],
+
       description : {
         type: String,
         default : 'Welcome To My Profile'

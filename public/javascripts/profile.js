@@ -8,6 +8,7 @@ document.querySelector("#imageUploadInput").addEventListener("change", () => {
     document.querySelector("#inputForm").submit();
 })
 
+//Editing description
 const desc = document.querySelector("textarea");
 const text = desc.getAttribute("text");
 const editBtn = document.querySelector(".editImgBtn");
@@ -25,6 +26,8 @@ editBtn.addEventListener("click", (e) => {
         done.classList.add("show")
     }
     else{
+        document.querySelector(".descForm").submit();
+
         desc.disabled = true;
         desc.classList.remove("border");
         edit.classList.add("show");

@@ -48,11 +48,11 @@ passport.deserializeUser(user.deserializeUser());
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-      cb(null, './public/images/uploads');
+    cb(null, './public/images/uploads');
   },
   filename: function (req, file, cb) {
     const uniquename = uuidv4();
-    cb(null, uniquename+path.extname(file.originalname));
+    cb(null, uniquename + path.extname(file.originalname));
   }
 
 });
@@ -123,33 +123,47 @@ app.get("/profile", isLoggedIn, (req, res) => {
   res.redirect("/profile/" + username);
 });
 
-app.get("/profile/:username", isLoggedIn,async (req, res) => {
-  try{
+app.get("/profile/:username", isLoggedIn, async (req, res) => {
+  try {
     if (req.params.username !== req.session.passport.user) {
       res.redirect("/login");
     } else {
-      const userDetails = await user.findOne({username: req.session.passport.user})
-      res.render("profile.ejs",{
-        profileImage : userDetails.profileImage,
-        username :userDetails.username,
-        fullname :userDetails.fullname,
-        noOfFrds : userDetails.friends.length,
-        description : userDetails.description
+      const userDetails = await user.findOne({ username: req.session.passport.user })
+      res.render("profile.ejs", {
+        profileImage: userDetails.profileImage,
+        username: userDetails.username,
+        fullname: userDetails.fullname,
+        noOfFrds: userDetails.friends.length,
+        description: userDetails.description
       });
     }
   }
-  catch(err){
+  catch (err) {
     console.log(err);
   }
-  
+
 });
 
-app.post('/profileupload',isLoggedIn, upload.single("image") ,async (req, res, next)=> {
-  const userDetails = await user.findOne({username: req.session.passport.user})
+app.post('/profileupload', isLoggedIn, upload.single("image"), async (req, res, next) => {
+  const userDetails = await user.findOne({ username: req.session.passport.user })
   userDetails.profileImage = req.file.filename;
   await userDetails.save();
   res.redirect("/profile");
-  
+
+});
+
+app.post("/description", isLoggedIn, async (req, res) => {
+  try {
+    const desc = req.body.description;
+    await user.updateOne(
+      { username: req.session.passport.user },
+      { description: desc }
+    );
+    res.redirect("/profile");
+  }
+  catch (err) {
+    console.log(err);
+  }
 });
 
 /**************************************************************************************************************************************/
@@ -182,7 +196,7 @@ app.get("/home/:username", isLoggedIn, async (req, res) => {
       //Details of each friend of client
       let friendDetailsList = await user.find(
         { username: { $in: friendsList } },
-        { _id: 0, username: 1, fullname: 1 ,profileImage: 1}
+        { _id: 0, username: 1, fullname: 1, profileImage: 1 }
       );
 
       //To filter friendlist according to search
@@ -225,7 +239,7 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
       //All existing users details except the client
       let existingUserList = await user.find(
         { username: { $ne: req.params.username } },
-        { _id: 0, username: 1, fullname: 1 ,profileImage: 1}
+        { _id: 0, username: 1, fullname: 1, profileImage: 1 }
       );
 
       //Usernames of Friends of the client
@@ -298,7 +312,7 @@ app.get("/global/:username", isLoggedIn, async (req, res) => {
       //All online users details
       let onlineUsersList = await user.find(
         { username: { $in: onlineUsers } },
-        { _id: 0, username: 1, fullname: 1 ,profileImage: 1}
+        { _id: 0, username: 1, fullname: 1, profileImage: 1 }
       );
 
       res.render("global.ejs", {
@@ -330,7 +344,7 @@ io.on('connection', async (socket) => {
   let roomName;
 
   // Leave all rooms
-  socket.on('leave all rooms',async () => {
+  socket.on('leave all rooms', async () => {
     const rooms = Object.keys(socket.rooms);
     rooms.forEach(room => {
       if (room !== socket.id) { // Exclude the default room (socket.id)
