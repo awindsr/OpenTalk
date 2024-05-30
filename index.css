@@ -1,0 +1,187 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width:100vw;
+}
+.maindiv{
+    width:100%;
+    padding:5px;
+    background-color:#FF6606;
+    height:100%;
+}
+.firstdiv{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+    
+    
+}
+.firstinnerdiv{
+    padding: 0px 10px;
+    width:100%;
+    height:60px;
+    border-radius: 7px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.firstinnerdiv>img{
+    max-width:40px;
+}
+.secondinnerdiv{
+    width:100%;
+    height: calc(100% - 64px);
+    background-color: #000000;
+    border-radius: 7px;
+    overflow: hidden;
+    padding:4px;
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+}
+.optionlist{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+}
+.option{
+    text-decoration: none;
+    color: white;
+    font-size: larger;
+}
+.option:hover{
+    color: #FF6606;  
+}
+
+.logout{
+    width:43px;
+    height:43px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:30px;
+    background-color: #000000;
+    border: none;
+}
+.chatbox{
+    width:100%;
+    height:60px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    padding: 0px 10px;
+    border-radius: 7px;
+}
+.chatbox>h1{
+    font-size: 30px;
+}
+.search{
+    height:40px;
+    width:fit-content;
+    position: relative;
+    display: flex;
+    gap:10px;
+    align-items: center;
+
+}
+.chatbox>.search>.inputdiv{
+    height:100%;
+    width:fit-content;
+    border-radius: 40px;
+    border: none;
+    color: #000000;
+    font-size: medium;
+    background-color: transparent;
+    border:2px solid grey;
+    position: relative;
+    
+    
+}
+.inputdiv>input{
+    height:100%;
+    width: 100%;
+    border-radius:40px ;
+    border: none;
+    padding: 0px 25px;
+}
+
+.inputdiv>i{
+    position: absolute;
+    right:30px;
+    top:50%;
+    transform: translateY(-50%);
+    font-size: large;
+    
+    
+}
+.searchBtn{
+    text-decoration: none;
+    color:white;
+    border-radius: 50%;
+    min-width:40px;
+    height:40px;
+    border:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 102, 6);
+}
+.searchBtn>i{
+    font-size:24px;
+}
+.friendlistbox{
+    width:100%;
+    height:calc(100% - 64px);
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    padding: 4px 7px;
+    display: flex;
+    flex-direction: column;
+    gap:2px;
+}
+.friendlistbox>p{
+    height:14px;
+    
+    color:grey;
+    font-weight:500;
+    font-size:14px;
+}
+.friendlist{
+    width:100%;
+    height:calc(100% - 16px);
+    overflow: auto;
+    
+}
+.user1{
+    width:100%; 
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(206, 206, 206);
+    padding:10px 10px;
+    display: flex;
+    padding-left: 20px;
+    justify-content: space-between;
+    gap:10px;
+    align-items: center;
+}
+.userdetails{
+    width:80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:15px;
+}
