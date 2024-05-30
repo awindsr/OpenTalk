@@ -254,8 +254,18 @@ body{
 .selecteduserprofile{
     width:55px;
     height:55px;
-    background-color: blue;
     border-radius: 50%;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#B1B1B1;
+}
+.selecteduserprofile img{
+    width:53px;
+    height:53px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 .selecteduserdetails>p{
     font-size: 12px;
