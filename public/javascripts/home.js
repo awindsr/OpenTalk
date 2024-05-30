@@ -30,8 +30,10 @@ for (let friend of allFriendsList) {
 
         const fullname = friend.querySelector("h3").innerText;
         const frdUsername = friend.querySelector("h6").innerText;
+        const frdProfileImage = friend.querySelector(".profile img").src;
         console.log(fullname);
 
+        document.querySelector(".selecteduserprofile img").src = frdProfileImage;
         document.querySelector(".selecteduserdetails h4").innerText = fullname;
         document.querySelector(".selecteduserdetails p").innerText = frdUsername;
 
@@ -43,6 +45,16 @@ for (let friend of allFriendsList) {
 
     })
 }
+
+//viewing others profile
+const viewProfile = document.querySelector(".thirdinnerdiv");
+
+
+viewProfile.addEventListener("click",(e)=>{
+    const otherUsername = viewProfile.querySelector("p").innerHTML;
+    console.log(otherUsername);
+    window.location.href = "/view-profile/" + otherUsername ; 
+})
 
 /*************************************************************Home Chat***************************************************************/
 const form = document.getElementById("homeForm");
@@ -106,7 +118,6 @@ socket.on("Home Chat", (msg, username) => {
 // Handle recovered messages
 socket.on("Recover home messages", (msg, username) => {
     const item = document.createElement("div");
-    console.log(form.getAttribute("username"));
     if (myUsername === username) {
   
       item.classList.add("mymessage");

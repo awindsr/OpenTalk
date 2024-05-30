@@ -166,6 +166,25 @@ app.post("/description", isLoggedIn, async (req, res) => {
   }
 });
 
+app.get("/view-profile/:username", async (req, res) => {
+  try {
+    const userDetails = await user.findOne({ username: req.params.username })
+
+    res.render("viewProfile.ejs", {
+      profileImage: userDetails.profileImage,
+      username: userDetails.username,
+      fullname: userDetails.fullname,
+      noOfFrds: userDetails.friends.length,
+      description: userDetails.description
+    });
+
+  }
+  catch (err) {
+    console.log(err);
+  }
+
+});
+
 /**************************************************************************************************************************************/
 
 app.get("/home", isLoggedIn, (req, res) => {
