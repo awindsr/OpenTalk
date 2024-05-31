@@ -513,18 +513,6 @@ io.on('connection', async (socket) => {
 
 //////////////////////////////////////////////
 
-// io.on("connection", (socket) => {
-//   // socket.join("some room");
-
-//   socket.on("chat message", (msg) => {
-//     // Broadcast to all connected clients in the room except the sender
-//     socket.to("some room").emit("chat message", msg);
-
-//   });
-//   // Join the room named 'some room'
-// });
-
-//////////////////////////////////////////////////////////
 
 server.listen(PORT, () => {
   console.log(`Listening to port ${PORT}`);
