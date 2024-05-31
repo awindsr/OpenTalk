@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import express from "express";
 import user from "./models/user.js";
 import { userSort, createRoomName ,returnPage} from './public/javascripts/functions.js';
@@ -13,13 +14,27 @@ import multer from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 import device from 'express-device';
+import dotenv from 'dotenv';
+dotenv.config();
+
+
+const connectDB = async ()=> {
+  try{
+      const conn = await mongoose.connect(process.env.MONGO_URI);
+      console.log(`MongoDB Connected : ${conn.connection.host}`);
+  }
+  catch(error){
+      console.log(error);
+  }
+}
+
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   connectionStateRecovery: {},
 });
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 let onlineUsers = [];
 
 app.set("view engine", "ejs");
@@ -519,7 +534,8 @@ io.on('connection', async (socket) => {
 //////////////////////////////////////////////
 
 
-server.listen(PORT, () => {
-  console.log(`Listening to port ${PORT}`);
+connectDB().then(() =>{
+  server.listen(PORT, () => {
+      console.log(`Listening to port ${PORT}`);
+  })
 });
-
