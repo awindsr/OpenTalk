@@ -171,8 +171,13 @@ app.post("/description", isLoggedIn, async (req, res) => {
 app.get("/view-profile/:username", async (req, res) => {
   try {
     const userDetails = await user.findOne({ username: req.params.username })
+    let from = req.query.From;
+    if (from === undefined){
+      from = "home";
+    }
 
     res.render("viewProfile.ejs", {
+      location: from,
       profileImage: userDetails.profileImage,
       username: userDetails.username,
       fullname: userDetails.fullname,

@@ -4,6 +4,19 @@ const socket = io({
   },
 });
 
+
+//viewing others profile
+const viewProfileList = document.querySelectorAll(".user1");
+
+for (let viewProfile of viewProfileList){
+    viewProfile.addEventListener("click",(e)=>{
+    const otherUsername = viewProfile.querySelector("h6").innerHTML;
+    window.location.href = "/view-profile/" + otherUsername + "?From=global"; 
+  });
+}
+
+
+
 /*************************************************************Global Chat***************************************************************/
 const form = document.getElementById("globalForm");
 const username = form.getAttribute("username");

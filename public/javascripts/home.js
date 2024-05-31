@@ -53,7 +53,7 @@ const viewProfile = document.querySelector(".thirdinnerdiv");
 viewProfile.addEventListener("click",(e)=>{
     const otherUsername = viewProfile.querySelector("p").innerHTML;
     console.log(otherUsername);
-    window.location.href = "/view-profile/" + otherUsername ; 
+    window.location.href = "/view-profile/" + otherUsername +"?From=home"; 
 })
 
 /*************************************************************Home Chat***************************************************************/
