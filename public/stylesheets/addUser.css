@@ -180,6 +180,18 @@ li{
     font-weight: 500;
     cursor: pointer;
 }
+.btnPending{
+    position: absolute;
+    right: 0px;
+    bottom: 15px;
+    width: 80px;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    background-color: rgb(216, 212, 212);
+    color: grey;
+    font-weight: 500;
+}
 .btnRemove{
     position: absolute;
     right: 0px;
@@ -258,7 +270,7 @@ li{
 }
 
 .accept{
-    width:30%;
+    width:80px;
     height:25px;
     border:none;
     border-radius: 10px;
@@ -271,7 +283,7 @@ li{
     font-size: 12px;
 }
 .reject{
-    width:30%;
+    width:80px;
     height:25px;
     border:none;
     border-radius: 10px;

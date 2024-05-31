@@ -276,7 +276,30 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
         sortedUserList = sortedUserList.filter(user => user.username.includes(searchQuery));
       }
 
+      //To find all recieved requests
+      let requestReceived = await user.find(
+        { username: req.session.passport.user},
+        { _id: 0, reqReceived: 1}
+      )
+      let reqReceivedList = requestReceived[0].reqReceived;
+
+      //Details of each reqReceived 
+      let reqReceivedDetailsList = await user.find(
+        { username: { $in: reqReceivedList } },
+        { _id: 0, username: 1, fullname: 1, profileImage: 1 }
+      );
+
+      //List of send requests
+      let requestSend = await user.find(
+        { username: req.session.passport.user},
+        { _id: 0, reqSend: 1}
+      )
+      let reqSendList = requestSend[0].reqSend;
+
       res.render("addUser.ejs", {
+        reqReceivedList: reqReceivedList,
+        reqSendList: reqSendList,
+        reqReceivedDetails: reqReceivedDetailsList,
         existingUsers: sortedUserList,
         friendsList: friendsList
       });
@@ -293,8 +316,56 @@ app.post("/addFriend/:newFriendName", isLoggedIn, async (req, res) => {
     const frdUsername = req.params.newFriendName;
     await user.updateOne(
       { username: myUsername },
-      { $push: { friends: frdUsername } }
+      { $push: { reqSend: frdUsername } }
     );
+
+    await user.updateOne(
+      { username: frdUsername },
+      { $push: { reqReceived: myUsername } }
+    );
+
+    res.redirect("/addUser");
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/reqAccepted/:acceptedFriendName", isLoggedIn, async (req, res) => {
+  try {
+    const myUsername = req.session.passport.user;
+    const frdUsername = req.params.acceptedFriendName;
+    await user.updateOne(
+      { username: myUsername },
+      { $push: { friends: frdUsername } , $pull: { reqReceived : frdUsername} }
+    );
+
+    await user.updateOne(
+      { username: frdUsername },
+      { $push: { friends: myUsername } , $pull: {reqSend: myUsername}}
+    );
+
+    res.redirect("/addUser");
+  }
+  catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/reqDeclined/:refusedFriendName", isLoggedIn, async (req, res) => {
+  try {
+    const myUsername = req.session.passport.user;
+    const frdUsername = req.params.newFriendName;
+    await user.updateOne(
+      { username: myUsername },
+      { $push: { reqSend: frdUsername } }
+    );
+
+    await user.updateOne(
+      { username: frdUsername },
+      { $push: { reqReceived: myUsername } }
+    );
+
     res.redirect("/addUser");
   }
   catch (err) {
@@ -310,6 +381,10 @@ app.post("/removeFriend/:oldFriendName", isLoggedIn, async (req, res) => {
       { username: myUsername },
       { $pull: { friends: frdUsername } }
     );
+    await user.updateOne(
+      { username: frdUsername},
+      { $pull: {friends: myUsername} }
+    )
     res.redirect("/addUser");
   }
   catch (err) {
