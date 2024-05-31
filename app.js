@@ -411,7 +411,7 @@ app.get("/global/:username", isLoggedIn, async (req, res) => {
         { _id: 0, username: 1, fullname: 1, profileImage: 1 }
       );
 
-      res.render("global.ejs", {
+      res.render("global" + returnPage(req.device.type), {
         online: onlineUsers.length,
         onlineUsersList: onlineUsersList,
         username: req.session.passport.user
