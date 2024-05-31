@@ -38,4 +38,16 @@ function createRoomName(username1, username2) {
     }
 }
 
-export { userSort ,createRoomName};
+/**************************************************************************************************************************************/
+
+//Function to return page to render according to device type
+function returnPage(deviceType){
+    if (deviceType === 'phone') {
+        return "_mobile.ejs";
+    } else {
+        return ".ejs";
+    }
+}
+
+
+export { userSort ,createRoomName ,returnPage};

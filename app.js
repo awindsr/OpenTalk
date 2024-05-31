@@ -1,6 +1,6 @@
 import express from "express";
 import user from "./models/user.js";
-import { userSort, createRoomName } from './public/javascripts/functions.js';
+import { userSort, createRoomName ,returnPage} from './public/javascripts/functions.js';
 import passport from "passport";
 import localStrategy from "passport-local";
 import expressSession from "express-session";
@@ -12,6 +12,7 @@ import homeChat from "./models/home.js";
 import multer from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
+import device from 'express-device';
 
 const app = express();
 const server = createServer(app);
@@ -27,6 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(flash());
+app.use(device.capture());
 
 
 ////////////////////////////////////////////////////////////
@@ -223,7 +225,7 @@ app.get("/home/:username", isLoggedIn, async (req, res) => {
         friendDetailsList = friendDetailsList.filter(user => user.fullname.includes(searchQuery));
       }
 
-      res.render("home.ejs", {
+      res.render("home" + returnPage(req.device.type), {
         friendDetailsList: friendDetailsList,
         username: req.session.passport.user
       });

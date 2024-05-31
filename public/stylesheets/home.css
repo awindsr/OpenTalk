@@ -1,68 +1,61 @@
 *{
-    margin: 0px;
-    padding: 0px;
+    padding:0px;
+    margin:0px;
     box-sizing: border-box;
     font-family:   Calibri, 'Trebuchet MS', sans-serif;
 }
+
 body{
-    height: 100vh;
-    width:100vw;
+    width:100%;
+    height:100vh;
+    
 }
 .maindiv{
-    width:100%;
-    padding:8px;
-    background-color:#FF6606;
-    height:100%;
-}
-.firstdiv{
+    padding:25px;
     width:100%;
     height:100%;
+    background-color:#E2E4E9;
     display: flex;
-    flex-direction: column;
-    gap:4px;
-    
-    
-    
+    gap:5px;
+}
+
+.firstdiv{
+    height:100%;
+    width:40%;
+    border-radius: 10px;
+    background-color:#E2E4E9;
+    display: flex;
+    gap:5px;
 }
 .firstinnerdiv{
-    padding: 0px 10px;
-    width:100%;
-    height:60px;
-    border-radius: 7px;
-    background-color: black;
-    display: flex;
-    align-items: center;
+    min-width:80px;
+    height:100%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    display:flex;
+    padding:20px 0px;
+    flex-direction: column;
     justify-content: space-between;
-    
+    align-items: center;
 }
 .firstinnerdiv>img{
-    max-width:40px;
-}
-.secondinnerdiv{
-   
-    width:100%;
-    height: calc(100% - 64px);
-    background-color: #000000;
-    border-radius: 7px;
-    overflow: hidden;
-    padding:4px;
-    display: flex;
-    flex-direction: column;
-    gap:4px;
-   
-    
-    
+    max-width:45px;
 }
 .optionlist{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap:30px;
+    gap:20px;
+    min-height: 195px;
 }
+
 .option{
+    color:#ffffff;
+    font-size:24px;
     text-decoration: none;
-    color: white;
-    font-size: larger;
+    transition: 0.3s;
+
 }
 .option:hover{
     color: #FF6606;  
@@ -73,7 +66,7 @@ body{
     height:43px;
     cursor: pointer;
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: rgb(255, 102, 6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,55 +74,59 @@ body{
     background-color: #000000;
     border: none;
 }
-.chatbox{
+.secondinnerdiv{
     width:100%;
-    height:60px;
-    background-color: rgb(255, 255, 255);
+    height:100%;
+    background-color: rgba(202, 21, 21, 0);
+    border-radius: 10px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap:5px;
+    
+    
+    
+}
+.chatbox{
+    padding:0px 10px;
+    min-height:70px;
+    width:100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    color:rgb(0, 0, 0);
+    display:flex;
     gap:10px;
-    padding: 0px 10px;
-    border-radius: 7px;
+    align-items: center;
+    justify-content:space-between;
+
 }
 .chatbox>h1{
     font-size: 30px;
 }
 .search{
     height:40px;
-    width:fit-content;
+    width:80%;
     position: relative;
     display: flex;
     gap:10px;
     align-items: center;
 
 }
-.chatbox>.search>.inputdiv{
+.chatbox>.search>input{
     height:100%;
-    width:fit-content;
+    width:85%;
     border-radius: 40px;
     border: none;
+    padding:0px 25px;
     color: #000000;
-    font-size: medium;
+    font-size: larger;
     background-color: transparent;
     border:2px solid grey;
-    position: relative;
     
     
 }
-.inputdiv>input{
-    height:100%;
-    width: 100%;
-    border-radius:40px ;
-    border: none;
-    padding: 0px 25px;
-}
-
-.inputdiv>i{
+.search>i{
     position: absolute;
-    right:30px;
-    top:50%;
-    transform: translateY(-50%);
+    right:75px;
     font-size: large;
     
     
@@ -148,29 +145,28 @@ body{
 }
 .searchBtn>i{
     font-size:24px;
+    
 }
 .friendlistbox{
     width:100%;
-    height:calc(100% - 64px);
+    height:100%;
     background-color: rgb(255, 255, 255);
-    border-radius: 7px;
-    padding: 4px 7px;
-    display: flex;
-    flex-direction: column;
-    gap:2px;
+    border-radius: 10px;
+    padding:20px ;
+    padding-right: 10x;
+    overflow: hidden;
 }
 .friendlistbox>p{
-    height:14px;
-    
     color:grey;
-    font-weight:500;
-    font-size:14px;
+    font-weight:700;
+    font-size: smaller;
 }
 .friendlist{
     width:100%;
-    height:calc(100% - 16px);
+    background-color: rgb(255, 255, 255);
+    height: 98%;
+    padding-right: 5px;
     overflow: auto;
-    
 }
 .user1{
     width:100%; 
@@ -191,30 +187,59 @@ body{
     flex-wrap: wrap;
     gap:15px;
 }
-.seconddiv{
-    
-    height: calc(100% - 64px);
-    width:100%;
-    border-radius: 10px;
+
+.profile{
+    height:40px;
+    width:40px;
+    background-color:  #B1B1B1;
+    border-radius: 50%;
+    position: relative;
     display: flex;
-    flex-direction: column;
-    
-    
+    justify-content: center;
     
 }
+.profile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* //////////////////////////////////// */
+.seconddiv{
+    height:100%;
+    display: flex;
+    gap:5px;
+    flex-direction: column;
+    width:60%;
+    border-radius: 10px;
+    background-color: rgba(31, 36, 36, 0);
+}
+.emptySecondDiv{
+    height:100%;
+    width:60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.emptySecondDiv img{
+    height: 100px;
+    width: 100px;
+}
+.emptySecondDiv h3{
+    color: #ababab;
+}
 .thirdinnerdiv{
-    padding:0px 10px;
-    padding-right: 18px;
+    padding:0px 20px;
     width:100%;
-    height:65px;
+    min-height:70px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     color:rgb(0, 0, 0);
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgb(255, 255, 255);
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
     justify-content: space-between;
 }
 .selecteduser{
@@ -227,40 +252,41 @@ body{
     
 }
 .selecteduserprofile{
-    width:50px;
-    height:50px;
-    background-color: blue;
+    width:55px;
+    height:55px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#B1B1B1;
+}
+.selecteduserprofile img{
+    width:55px;
+    height:55px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 .selecteduserdetails>p{
     font-size: 12px;
 }
 .menu{
     text-decoration: none;
-    width:30px;
-    height:30px;
-    color: #a2a2a2;
-    font-size:20px;
-    background-color: #f4f4f4;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: #000000;
+    font-size:24px;
 }
 .fourthinnerdiv{
-   
     width:100%;
-    height:calc(100% - 65px);
+    height:calc(100% - 75px);
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
-    padding:10px ;
+    padding:20px ;
     display: flex;
     gap:10px;
     flex-direction: column;
     justify-content: space-between;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
 }
+
+
 #homeForm{
     width:100%;
     height:40px;
@@ -282,6 +308,7 @@ body{
     padding-top: 10px;
     overflow: hidden;
 }
+
 #homeForm>button{
     width:40px;
     height:40px;
@@ -292,6 +319,7 @@ body{
     color: white;
     background-color: #FF6606;
 }
+
 #homeMessagediv{
     padding:10px 10px;
     width:100%;
@@ -359,10 +387,35 @@ body{
     display: flex;
     justify-content: flex-end;
 }
-
-.newshow{
-    display:flex;
+.noUserFoundImage{
+    width: 60%;
+    object-fit: cover;
 }
-.newhide{
-    display:none;
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clicked{
+    background-color: #E1E3E8;
+}
+.hide{
+    display: none;
+}
+
+
+
+
+.friendlist::-webkit-scrollbar {
+    width: 5px; 
+ }
+
+.friendlist::-webkit-scrollbar-track {
+  background-color:#E2E4E9;
+  border-radius:30px ;
+}
+
+.friendlist::-webkit-scrollbar-thumb {
+  background: #FF6606;
+  border-radius:30px;
 }

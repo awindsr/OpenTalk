@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <link rel="icon" href="/images/OpenTalkLogo.png">
-    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="stylesheet" href="/stylesheets/home_mobile.css">
     <link rel="stylesheet" href="/stylesheets/logout.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/stylesheets/logout.css">
+
 
     <!-- Font Awsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -37,13 +39,17 @@
                 </div>
                 <button class="logout"><i class="ri-logout-box-line"></i></button>
             </div>
-            <div class="secondinnerdiv">
+            <div class="secondinnerdiv newshow">
                 <div class="chatbox">
                     <h1>Chat</h1>
 
                     <form myUsername="<%=username%>" class="search" action="/home">
-                        <input id="seaarchInput" name="search" type="text" autocomplete="off" placeholder="Search user">
-                        <i class="ri-user-search-line"></i>
+                        <div class="inputdiv">
+                            <input id="seaarchInput" name="search" type="text" autocomplete="off"
+                                placeholder="Search user">
+                            <i class="ri-user-search-line"></i>
+                        </div>
+
                         <button class="searchBtn" type="submit"><i class="ri-search-line"></i></button>
                     </form>
 
@@ -55,7 +61,7 @@
                         <% for (let friend of friendDetailsList){%>
                             <div class="user1">
                                 <div class="userdetails">
-                                    <div class="profile" >
+                                    <div class="profile">
                                         <img src="/images/uploads/<%=friend.profileImage%>">
                                     </div>
                                     <div class="description">
@@ -73,39 +79,38 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="emptySecondDiv">
-            <img src="/images/hiddenLogo.png">
-            <h3>Select a user to start messaging</h3>
-        </div>
-        <div class="seconddiv hide">
-            <div class="thirdinnerdiv">
-                <div class="selecteduser">
-                    <div class="selecteduserprofile"><img ></div>
-                    <div class="selecteduserdetails">
-                        <h4></h4>
-                        <p></p>
+            <div class="seconddiv newhide">
+                <div class="thirdinnerdiv">
+                    <div class="selecteduser">
+                        <div class="selecteduserprofile"><img ></div>
+                        <div class="selecteduserdetails">
+                            <h4></h4>
+                            <p></p>
+                        </div>
+
+                    </div>
+                    <div class="menu"><i class="ri-close-line"></i></div>
+
+                </div>
+                <div class="fourthinnerdiv">
+                    <div id="homeMessagediv">
                     </div>
 
-                </div>
-                <a class="menu"><i class="ri-menu-line"></i></a>
-
-            </div>
-            <div class="fourthinnerdiv">
-                <div id="homeMessagediv">
+                    <form id="homeForm" action="">
+                        <textarea id="homeInput" placeholder="Enter your Message"></textarea>
+                        <button type="submit"><i class="ri-arrow-right-up-line"></i></button>
+                    </form>
                 </div>
 
-                <form id="homeForm" action="">
-                    <textarea id="homeInput" placeholder="Enter your Message"></textarea>
-                    <button type="submit"><i class="ri-arrow-right-up-line"></i></button>
-                </form>
             </div>
-
         </div>
+
+
     </div>
 </body>
 <script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/home_mobile.js"></script>
 <script src="/javascripts/logout.js"></script>
-<script src="/javascripts/home.js"></script>
+
 
 </html>
