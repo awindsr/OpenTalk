@@ -42,10 +42,8 @@ body{
    
     width:100%;
     height: calc(100% - 64px);
-    background-color: #000000;
     border-radius: 7px;
     overflow: hidden;
-    padding:4px;
     display: flex;
     flex-direction: column;
     gap:4px;
