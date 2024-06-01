@@ -1,15 +1,3 @@
-function setViewportHeight() {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  }
-  
-  // Initial setting of the viewport height
-  setViewportHeight();
-  
-  // Update the viewport height when the window is resized
-  window.addEventListener('resize', setViewportHeight);
-
-/////////////////////////////////////////////////////////////
 
 const uploadButton = document.getElementById("uploadButton");
 
