@@ -316,7 +316,7 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
       )
       let reqSendList = requestSend[0].reqSend;
 
-      res.render("addUser.ejs", {
+      res.render("addUser" + returnPage(req.device.type), {
         reqReceivedList: reqReceivedList,
         reqSendList: reqSendList,
         reqReceivedDetails: reqReceivedDetailsList,

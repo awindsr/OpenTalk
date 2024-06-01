@@ -1,0 +1,385 @@
+*{
+    padding:0px;
+    margin:0px;
+    box-sizing: border-box;
+    font-family: "Noto Sans";
+}
+
+body{
+    width:100%;
+    height:100vh;
+    
+}
+   
+.maindiv{
+    height:100%;
+    width:100%;
+    background-color:#E1E3E8;
+    flex-direction: column;
+    display: flex;
+    gap:4px;
+    padding:8px;
+}
+.firstinnerdiv{
+    padding: 0px 10px;
+    width:100%;
+    min-height:60px;
+    border-radius: 7px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.firstinnerdiv>img{
+    max-width:40px;
+}
+.optionlist{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
+}
+.option{
+    text-decoration: none;
+    color: white;
+    font-size: larger;
+}
+.option:hover{
+    color: #301d12;  
+}
+
+.logout{
+    width:43px;
+    height:43px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:30px;
+    background-color: #000000;
+    border: none;
+}
+
+.firstinnerdiv>img{
+    max-width:40px;
+}
+
+.secondinnerdiv{
+    width:100%;
+    height:100%;
+    border-radius: 10px;
+    position: relative;
+    border: 4px solid black;
+    overflow: hidden;
+
+}
+
+.addUserContainer{
+    width:100%;
+    height:100%;
+    padding:10px;
+    background-color:#FF6606;
+    border-radius: 5px;
+    overflow: hidden;
+    
+    
+}
+.bellBtn{
+    width:40px;
+    height:40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #FF6606;
+}
+.bellAnimation{
+    transform: rotate(45deg);
+    animation: bell 0.7s linear infinite alternate;
+}
+@keyframes bell{
+    from{
+        transform: rotate(45deg);
+    }
+    to{
+        transform: rotate(0deg);
+    }
+}
+.titleAndBtn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.titleAndBtn>h2{
+    margin-top: 10px;
+    font-size: larger;
+}
+
+.addUserContainer hr {
+    width: 100%;
+    border: 0;
+    min-height: 0.5px;
+    background: #000000;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.addUserContainer h4 {
+    font-size: small;
+    color: #000000;
+}
+
+input{
+    margin-top: 5px;
+    border-radius: 10px;
+    width: 240px;
+    height: 30px;
+    border: 2px solid rgb(0, 0, 0);
+    padding-left: 8px;
+}
+.submitBtn{
+    margin-top: 5px;
+    margin-left: 5px;
+    border-radius: 10px;
+    border: none;
+    height: 30px;
+    width: 80px;
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+    font-weight: 500;
+}
+.existingUserGroup{
+    margin-top: 10px;
+    width:100%;
+    height:calc(100% - 180px);
+    list-style-type: none;
+    overflow: auto;
+    scrollbar-width: none;
+}
+.userdetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    color: #000000;
+}
+/* Hide scrollbar for WebKit browsers */
+ ul::-webkit-scrollbar {
+    display: none;
+  }
+
+li{
+    height: 60px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.323);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:15px;
+    position: relative;
+}
+
+.profile{
+    height:40px;
+    width:40px;
+    background-color: #B1B1B1;
+    border-radius: 50%;
+   position: relative;
+    display: flex;
+    justify-content: center;
+}
+.profile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.description p{
+    font-size: x-small;
+}
+.btnAdd{
+    position: absolute;
+    right: 0px;
+    bottom: 15px;
+    width: 80px;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    background-color: #b9f7bbff;
+    color: green;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btnPending{
+    position: absolute;
+    right: 0px;
+    bottom: 15px;
+    width: 80px;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    background-color: rgb(216, 212, 212);
+    color: grey;
+    font-weight: 500;
+}
+.btnRemove{
+    position: absolute;
+    right: 0px;
+    bottom: 15px;
+    width: 80px;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    background-color: rgb(242, 198, 198);
+    color: red;
+    font-weight: 500;
+    cursor: pointer;
+}
+.noUserFoundImage{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.BtnAndTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.colordiv{
+    width:0px;
+    height:0px;
+    background-color:#ffffff;
+    position: absolute;
+    top:-50px;
+    right:-50px;
+    border-radius: 50%;
+    z-index: 1;
+ 
+}
+.receivedrequests{
+    height:100%;
+    width:100%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 7px;
+    overflow: hidden;
+    position: absolute;
+    left:100%;
+    top:0%;
+    z-index: 3;
+    opacity:0;
+}
+
+
+
+
+
+
+
+
+.receivedrequests>hr{
+    margin-bottom: 10px;
+    margin-top: 15px;
+    border: none;
+    border-bottom:1px solid rgb(0, 0, 0);
+}
+.crossBtn{
+    width:40px;
+    height:40px;
+    background-color: #FF6606;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+}
+.requestsdiv{
+    width:100%;
+    scrollbar-width: none;
+    height:calc(100% - 65px);
+    overflow: auto;
+    border-radius:7px;
+    
+}
+.user1{
+    width:100%; 
+    min-height: 90px;
+    background-color: rgba(255, 255, 255, 0);
+    border-bottom: 1px solid rgb(206, 206, 206);
+    padding:7px 5px;
+    display: flex;
+    gap:10px;
+    align-items: center;
+}
+.userdetails2nd{
+    width:100%;
+    min-height:90px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap:10px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0);
+}
+.userarea{
+    background-color: rgba(0, 255, 255, 0);
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:10px;
+}
+.buttons{
+    width:100%;
+    height:25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+}
+
+.accept{
+    width:80px;
+    height:25px;
+    border:none;
+    border-radius: 10px;
+    background-color: green;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:7px;
+    color:white;
+    font-size: 12px;
+}
+.reject{
+    width:80px;
+    height:25px;
+    border:none;
+    border-radius: 10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:7px;
+    color:white;
+    font-size: 12px;
+    background-color: rgb(255, 0, 0);
+}
+.norequests{
+    width:100%;
+    height:calc(100% - 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.norequests>img{
+    width:200px;
+}
+
