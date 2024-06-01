@@ -19,9 +19,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const connectDB = ()=> {
+const connectDB =async ()=> {
   try{
-      const conn = mongoose.connect(process.env.MONGO_URI);
+      const conn =await mongoose.connect(process.env.MONGO_URI);
       console.log(`MongoDB Connected : ${conn.connection.host}`);
   }
   catch(error){
@@ -55,7 +55,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     secret: "hey",  
-    cookie: { secure: false, maxAge: 60000 } 
+    cookie: { secure: false, maxAge: 86400000 } 
   })
 );
 
