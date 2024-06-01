@@ -143,8 +143,8 @@ body{
     
 }
 .arrowbtn{
-    width:47px;
-    height:47px;
+    width:44px;
+    height:44px;
     background-color: white;
     border-radius: 50%;
     display: flex;
@@ -155,7 +155,7 @@ body{
 }
 .thirdinnerdiv{
     width:200px;
-    height:47px;
+    height:44px;
     padding:4px;
     display: flex;
     align-items: center;
