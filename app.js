@@ -14,13 +14,14 @@ import multer from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
 import device from 'express-device';
+import cookieParser from "cookie-parser";
 import dotenv from 'dotenv';
 dotenv.config();
 
 
-const connectDB = async ()=> {
+const connectDB = ()=> {
   try{
-      const conn = await mongoose.connect(process.env.MONGO_URI);
+      const conn = mongoose.connect(process.env.MONGO_URI);
       console.log(`MongoDB Connected : ${conn.connection.host}`);
   }
   catch(error){
@@ -39,6 +40,7 @@ let onlineUsers = [];
 
 app.set("view engine", "ejs");
 
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
@@ -51,8 +53,9 @@ passport.use(new localStrategy(user.authenticate()));
 app.use(
   expressSession({
     resave: false,
-    saveUninitialized: false,
-    secret: "hey"
+    saveUninitialized: true,
+    secret: "hey",  
+    cookie: { secure: false, maxAge: 60000 } 
   })
 );
 
@@ -130,6 +133,7 @@ app.get("/logout/:username", isLoggedIn, (req, res, next) => {
       return next(err);
     }
     onlineUsers.splice(onlineUsers.indexOf(req.params.username), 1);
+    res.clearCookie('connect.sid');
     res.redirect("/login");
   });
 });
