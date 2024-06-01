@@ -1,3 +1,5 @@
+
+
 *{
     padding:0px;
     margin:0px;
@@ -162,6 +164,7 @@ body{
 }
 
 .detailsDiv{
+    overflow: hidden;
     position: relative;
     width:100%;
     height:calc(100% - 200px);
@@ -234,4 +237,71 @@ body{
     color: #dbd9d9;
     font-weight: 400;
    
+}
+
+@media screen and (max-width:480px){
+    .maindiv{
+        width:100vw;
+        height:100vh;
+        background-color:#E2E4E9;
+        padding: 8px;
+       
+    
+    }
+    .firstdiv{
+        height:100%;
+        width:100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+        
+    }
+    .firstinnerdiv{
+        padding: 0px 10px;
+        min-width:100%;
+        min-height:60px;
+        max-height: 60px;
+        border-radius: 7px;
+        background-color: black;
+        display: flex;
+        flex-direction: row;
+        
+        
+    }
+    .firstinnerdiv>img{
+        max-width:40px;
+    }
+
+    .option{
+        text-decoration: none;
+        color: white;
+        font-size: larger;
+    }
+    .optionlist{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap:30px;
+        min-height: 195px;
+    }
+    .secondinnerdiv{
+        width:100%;
+        height:calc(100% - 65px);
+        background-color: #FF6606;
+        border-radius: 10px;
+        padding:10px;
+        z-index: 0;
+    }
+    .description{
+        margin-top: 0px;
+    }
+    .logout{
+        color: white;
+    }
+    .editBtn>i{
+        font-size: 18px;
+    }
 }

@@ -23,11 +23,7 @@ body{
     display: flex;
     flex-direction: column;
     gap:4px;
-    
-    
-    
-    
-    
+       
 }
 .firstinnerdiv{
     padding: 0px 10px;

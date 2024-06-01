@@ -419,3 +419,17 @@ body{
   background: #FF6606;
   border-radius:30px;
 }
+
+#homeMessagediv::-webkit-scrollbar {
+    width: 5px; 
+ }
+
+#homeMessagediv::-webkit-scrollbar-track {
+  background-color:#00000000;
+  border-radius:30px ;
+}
+
+#homeMessagediv::-webkit-scrollbar-thumb {
+  background: #FF6606;
+  border-radius:30px;
+}
