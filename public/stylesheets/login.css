@@ -101,6 +101,7 @@ button{
     font-size: larger;
     font-family: "Noto Sans";
     width: 100%;
+    border:none;
 }
 .error{
     color:red;

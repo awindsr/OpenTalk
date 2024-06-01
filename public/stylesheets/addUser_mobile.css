@@ -152,6 +152,11 @@ input{
     color: #000000;
     font-weight: 500;
 }
+#formAddUser{
+    width:100%;
+    display: flex;
+    gap:20px;
+}
 .existingUserGroup{
     margin-top: 10px;
     width:100%;
