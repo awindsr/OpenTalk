@@ -1,3 +1,4 @@
+
 *{
     margin:0px;
     padding:0px;
@@ -5,6 +6,8 @@
 }
 body{
     background-color: black;
+    height:100svh;
+    width:100vw;
 }
 .risediv{
     z-index: 99;
@@ -136,6 +139,11 @@ button{
     color:red;
     font-family: "Noto Sans";
 }
-
+/*To Make the main animation appear in centre for mobile */
+@media screen and (max-width:480px) {
+    .mainlogodiv{
+        top:40%;    
+    }
+}
 
 
