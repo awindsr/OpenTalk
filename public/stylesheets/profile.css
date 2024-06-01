@@ -6,6 +6,15 @@
     box-sizing: border-box;
     font-family:   Calibri, 'Trebuchet MS', sans-serif;
 }
+:root {
+    --vh: 100vh; /* Fallback for browsers that don't support JavaScript */
+  }
+  
+  body {
+    height: calc(var(--vh, 1vh) * 100);
+    margin: 0;
+    overflow: hidden; /* Prevent scrolling */
+  }
 
 
 .maindiv{
