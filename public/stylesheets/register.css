@@ -11,7 +11,7 @@ body{
 }
 .risediv{
     z-index: 99;
-    height:100vh;
+    height:100%;
     width:100%;
     background-color: black;
     position: fixed;
@@ -40,7 +40,7 @@ body{
 
 .registerpage{
     
-    height:100vh;
+    height:100%;
     width:100%;
     background-color: rgb(27, 26, 26);
     position: relative;
