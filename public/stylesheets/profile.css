@@ -240,6 +240,10 @@ body{
 }
 
 @media screen and (max-width:480px){
+    body{
+        width:100vw;
+        height:85vh;
+    }
     .maindiv{
         width:100vw;
         height:100vh;
