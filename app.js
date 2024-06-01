@@ -316,7 +316,14 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
       )
       let reqSendList = requestSend[0].reqSend;
 
+      //fetch btnState
+      let btnState = await user.find(
+        { username: req.session.passport.user},
+        { _id : 0, addUserBtnState: 1}
+      )
+
       res.render("addUser" + returnPage(req.device.type), {
+        btnState: btnState[0].addUserBtnState,
         reqReceivedList: reqReceivedList,
         reqSendList: reqSendList,
         reqReceivedDetails: reqReceivedDetailsList,
@@ -326,6 +333,19 @@ app.get("/addUser/:username", isLoggedIn, async (req, res) => {
     }
   }
   catch (err) {
+    console.log(err);
+  }
+});
+
+app.post('/submit-data',async (req, res) => {
+  const { btnState } = req.body;
+  try{
+    await user.updateOne(
+      {username: req.session.passport.user},
+      { addUserBtnState: btnState}
+    )
+  }
+  catch(err){
     console.log(err);
   }
 });

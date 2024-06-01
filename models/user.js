@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
       description : {
         type: String,
         default : 'Welcome To My Profile'
+      },
+      addUserBtnState :{
+        type: String,
+        default: false
       }
 });
 

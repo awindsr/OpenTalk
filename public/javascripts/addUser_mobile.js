@@ -27,8 +27,11 @@ let bell = document.querySelector(".bellBtn");
 let close = document.querySelector(".crossBtn");
 let box = document.querySelector(".receivedrequests");
 
+let btnState = bell.getAttribute("value");
+
 
 bell.addEventListener("click",()=>{
+    btnState = "true";
     color.style.height="120%";
     color.style.width="150%";
     color.style.borderRadius="0px";
@@ -38,11 +41,27 @@ bell.addEventListener("click",()=>{
     color.style.transition="0.5s";
     box.style.opacity="1";
     color.style.animationName="full";
-    
+
+
+    fetch('/submit-data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ btnState: btnState })
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
 })
 
 close.addEventListener("click",()=>{
+    btnState = "false";
     color.style.height="0px";
     color.style.width="0px";
     color.style.borderRadius="50%";
@@ -51,7 +70,34 @@ close.addEventListener("click",()=>{
     color.style.transition="1s";
     color.style.transitionDelay="0.2s";
     
+    
+    fetch('/submit-data', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ btnState: btnState })
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log(result);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
 })
 
+
+//////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', () => {
+
+    if(btnState === "true"){
+        bell.click();
+        box.style.transition="0s"
+        color.style.transition="0s"
+
+    }
+       
+});
 
