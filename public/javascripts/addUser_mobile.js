@@ -21,6 +21,27 @@ else{
 }
 
 
+//viewing others profile
+const viewProfileList = document.querySelectorAll(".userdetails");
+
+for (let viewProfile of viewProfileList){
+    viewProfile.addEventListener("click",(e)=>{
+        const otherUsername = viewProfile.querySelector("p").innerHTML;
+        console.log(otherUsername);
+        window.location.href = "/view-profile/" + otherUsername +"?From=addUser"; 
+    });
+}
+
+//viewing others profile
+const viewProfileList2 = document.querySelectorAll(".userarea");
+
+for (let viewProfile2 of viewProfileList2){
+    viewProfile2.addEventListener("click",(e)=>{
+        const otherUsername = viewProfile2.querySelector("p").innerHTML;
+        window.location.href = "/view-profile/" + otherUsername +"?From=addUser"; 
+    });
+}
+
 //Responsive :Mobile
 let color = document.querySelector(".colordiv");
 let bell = document.querySelector(".bellBtn");
@@ -70,7 +91,7 @@ close.addEventListener("click",()=>{
     color.style.transition="1s";
     color.style.transitionDelay="0.2s";
     
-    
+
     fetch('/submit-data', {
         method: 'POST',
         headers: {

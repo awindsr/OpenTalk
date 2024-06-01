@@ -56,6 +56,7 @@
                 <ul class="existingUserGroup">
                     <% for (let user of existingUsers){%>
                         <li class="existingUser">
+                            <div class="userdetails">
                             <div class="profile" >
                                 <img src="/images/uploads/<%=user.profileImage%>">
                             </div>
@@ -63,9 +64,8 @@
                                 <h5>
                                     <%= user.fullname%>
                                 </h5>
-                                <p>
-                                    <%= user.username%>
-                                </p>
+                                <p><%= user.username%></p>
+                            </div>
                             </div>
                             <!-- if  friend -->
                             <% if(locals.friendsList[0].friends.includes(user.username)) {%>
@@ -95,7 +95,7 @@
 
                     <% for (let req of reqReceivedDetails){%>
                     <div class="user1">
-                        <div class="userdetails">
+                        <div class="userdetails2nd">
                             <div class="userarea">
                                 <div class="profile" >
                                     <img src="/images/uploads/<%=req.profileImage%>">

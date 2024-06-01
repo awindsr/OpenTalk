@@ -162,10 +162,11 @@ input{
 }
 .userdetails{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap:10px;
     color: #000000;
+    min-width: 70%;
 }
 /* Hide scrollbar for WebKit browsers */
  ul::-webkit-scrollbar {
@@ -275,13 +276,6 @@ li{
     z-index: 3;
     opacity:0;
 }
-
-
-
-
-
-
-
 
 .receivedrequests>hr{
     margin-bottom: 10px;
