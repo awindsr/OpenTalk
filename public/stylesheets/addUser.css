@@ -128,7 +128,7 @@ input{
 .existingUserGroup{
     margin-top: 10px;
     width: 100%;
-    height: calc( 100% -185px);
+    height: calc( 100% - 185px);
     list-style-type: none;
     overflow: auto;
     scrollbar-width: none; /* Firefox */
