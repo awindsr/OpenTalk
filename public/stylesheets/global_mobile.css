@@ -251,10 +251,13 @@ body{
     align-items: center;
     gap:10px;
     border-radius: 10px;
+    overflow: hidden;
 }
 .profile{
-    height:40px;
-    width:40px;
+    min-height:40px;
+    min-width:40px;
+    height: 40px;
+    width: 40px;
     background-color:  #B1B1B1;
     border-radius: 50%;
     display: flex;

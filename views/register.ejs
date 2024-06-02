@@ -32,8 +32,8 @@
                     <% if(existsError.length > 0){ %>
                         <p class="error"><%= existsError %></p>
                       <% } %>
-                    <input type="text" name="username" placeholder="Username" autocomplete="off" maxlength="25" pattern="^\S+$" title="Please enter username without spaces." required />
-                    <input type="text" name="fullname" placeholder="Full Name" autocomplete="off" maxlength="25" required />
+                    <input type="text" name="username" placeholder="Username" autocomplete="off" maxlength="20" pattern="^\S+$" title="Please enter username without spaces." required />
+                    <input type="text" name="fullname" placeholder="Full Name" autocomplete="off" maxlength="15" required />
                     <input type="password" name="password" placeholder="Password" autocomplete="off" maxlength="15" pattern="^\S+$" title="Please enter password without spaces." required />
                     <a class="nothaveaccount" href="./login">Already have an account?</a>
                 </div>

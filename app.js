@@ -399,15 +399,16 @@ app.post("/reqAccepted/:acceptedFriendName", isLoggedIn, async (req, res) => {
 app.post("/reqDeclined/:refusedFriendName", isLoggedIn, async (req, res) => {
   try {
     const myUsername = req.session.passport.user;
-    const frdUsername = req.params.newFriendName;
+    const frdUsername = req.params.refusedFriendName;
+
     await user.updateOne(
       { username: myUsername },
-      { $push: { reqSend: frdUsername } }
+      { $pull: { reqReceived: frdUsername } }
     );
 
     await user.updateOne(
       { username: frdUsername },
-      { $push: { reqReceived: myUsername } }
+      { $pull: { reqSend: myUsername } }
     );
 
     res.redirect("/addUser");

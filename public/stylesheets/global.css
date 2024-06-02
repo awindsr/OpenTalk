@@ -219,6 +219,7 @@ body{
     align-items: center;
     gap:10px;
     border-radius: 10px;
+    overflow: hidden;
 }
 .onlineusers::-webkit-scrollbar {
     width: 5px; 
