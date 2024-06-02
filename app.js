@@ -564,3 +564,5 @@ connectDB().then(() =>{
       console.log(`Listening to port ${PORT}`);
   })
 });
+
+module.exports = app;
