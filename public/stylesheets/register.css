@@ -142,7 +142,7 @@ button{
 /*To Make the main animation appear in centre for mobile */
 @media screen and (max-width:480px) {
     .mainlogodiv{
-        top:40%;    
+        top:45%;    
     }
 }
 
