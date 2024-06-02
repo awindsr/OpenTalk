@@ -11,7 +11,7 @@
 .maindiv{
     padding:25px;
     width:100vw;
-    height:100svh;
+    max-height:100svh;
     background-color:#E2E4E9;
     display: flex;
     gap:5px;
