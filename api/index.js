@@ -1,15 +1,15 @@
 import mongoose from "mongoose";
 import express from "express";
-import user from "./models/user.js";
-import { userSort, createRoomName ,returnPage} from './public/javascripts/functions.js';
+import user from "../models/user.js";
+import { userSort, createRoomName ,returnPage} from '../public/javascripts/functions.js';
 import passport from "passport";
 import localStrategy from "passport-local";
 import expressSession from "express-session";
 import flash from "connect-flash";
 import { Server } from "socket.io";
 import { createServer } from "node:http";
-import globalChat from "./models/global.js";
-import homeChat from "./models/home.js";
+import globalChat from "../models/global.js";
+import homeChat from "../models/home.js";
 import multer from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path from 'path';
@@ -564,5 +564,3 @@ connectDB().then(() =>{
       console.log(`Listening to port ${PORT}`);
   })
 });
-
-module.exports = app;
