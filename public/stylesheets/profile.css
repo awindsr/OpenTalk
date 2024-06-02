@@ -79,6 +79,7 @@
     border-radius: 10px;
     padding:10px;
     z-index: 0;
+    position: relative;
 }
 .backgroundImage{
     position: relative;
@@ -91,14 +92,14 @@
     justify-content: center;
     align-items: center;
     height: 200px;
-    font-size: 8vw;
+    font-size:11vw;
     background-color: rgb(63, 47, 47);
     border-radius: 10px;
     font-family: 'NOTO SANS';
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     /* font-weight: 500; */
-    color: rgb(0 0 0 / 29%);
+    color: rgba(0, 0, 0, 0.719);
     letter-spacing: -2px;
     font-weight: 800;
 }
@@ -187,10 +188,20 @@
     justify-content: space-between;
 }
 .friendTag{
-    padding: 5px 15px;
-    background-color: #FF6606;
+    padding: 5px 10px;
+    background-color:#FF6606;
     border-radius: 40px;
     color:white;
+    min-width:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 99;
+    right: 20px;
+    top:20px;
+    font-size: small;
+    border: 2px solid white;
 }
 .description{
     margin-top: 2px;
@@ -301,4 +312,5 @@
     .editBtn>i{
         font-size: 18px;
     }
+   
 }
